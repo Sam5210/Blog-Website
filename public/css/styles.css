@@ -1,0 +1,18 @@
+.background {
+    background-color: white;
+    background-image: -webkit-linear-gradient(to left, rgb(10, 10, 10), rgb(40, 40, 40) 40%, rgb(100, 100, 100) 50%, rgb(40, 40, 40) 60%, rgb(10, 10, 10) 100%);
+    background-image:-moz-linear-gradient(to left, rgb(10, 10, 10), rgb(40, 40, 40) 40%, rgb(100, 100, 100) 50%, rgb(40, 40, 40) 60%, rgb(10, 10, 10) 100%);
+    background-image:-o-linear-gradient(to left, rgb(10, 10, 10), rgb(40, 40, 40) 40%, rgb(100, 100, 100) 50%, rgb(40, 40, 40) 60%, rgb(10, 10, 10) 100%);
+    background-image: linear-gradient(to left, rgb(10, 10, 10), rgb(40, 40, 40) 40%, rgb(100, 100, 100) 50%, rgb(40, 40, 40) 60%, rgb(10, 10, 10) 100%);
+    min-height: 30rem;
+}
+#timeline {
+    position: absolute;
+    border-left-style: dotted;
+    border-left-width: 0.3rem;
+    border-left-color: white;
+    height: 80%;
+    color: white;
+    left: 50%;
+    top: 10%;
+}
