@@ -37,6 +37,9 @@
   /* box-shadow: 60px -60px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px green; */
   cursor: none;
 }
+.fit{
+  width: fit-content;
+}
 .geeks {
   display: inline-block;
   /* width: 400px; */
@@ -67,20 +70,58 @@
 .h4{
   font-size:  calc(0.5rem + 2vw)
 }
+/* .helix-small{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 8rem;
+  height: 16rem;
+  background: black;
+  border-radius: 50%;
+  z-index: +101;
+
+} */
+.helix{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 2rem;
+  height: 3rem;
+  background: black;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15vh;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: dashed;
+  border-width: 0.2rem;
+  border-color: orange;
+  border-radius: 50%;
+  box-shadow: 0 0 0.4rem 0.4rem aqua;
+  text-align: center;
+  align-items: center;
+  z-index: +99;
+}
 .img-thumbnail{
     max-width: 100%;
     position: relative;
     z-index: +1;
 }
-
+.navbar{
+  position: relative;
+  z-index: +1000;
+}
+.navbar-light .text-darkgrey{
+  color: darkgrey;
+}
 .text-white{
     color: white;
 }
 .trunc-width{
     max-width: 12rem;
-}
-.navbar-light .text-darkgrey{
-    color: darkgrey;
 }
 #timeline {
     position: absolute;
@@ -90,7 +131,7 @@
     height: 80%;
     left: 50%;
     top: 15%;
-    z-index: +100;
+    z-index: +50;
 }
 
 .wrap{

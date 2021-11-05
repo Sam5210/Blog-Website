@@ -1,4 +1,8 @@
-$(function() {
+$(handleEffects);
+function handleEffects(){
+    handleCircleEffects();
+}
+function handleCircleEffects(){
     let leftCircles = $(".align-hor-left .circle");
     let rightCircles = $(".align-hor-right .circle");
     let offsetSmall = String(Number(leftCircles.css("width").substring(0, leftCircles.css("width").length - 2))/2) + "px";
@@ -65,30 +69,8 @@ $(function() {
         timingFunction: 'linear',
         iterationCount: 1,
         fillMode: 'forwards'
-    })
-});
-//animation: border 3s ease 1 forwards;
-
-// 60px -60px 0 2px ${color},
-//  -60px -60px 0 2px ${color},
-//   -60px 60px 0 2px ${color},
-//    60px 60px 0 2px ${color}, 
-//    0 0 0 2px green
-
-// @keyframes border{
-//     0% {
-//       box-shadow: 60px -60px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-//     }
-//     25% {
-//       box-shadow: 0 -125px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-//     }
-//     50% {
-//       box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-//     }
-//     75% {
-//       box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, 0px 125px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px violet;
-//     }
-//     100% {
-//       box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, 0px 125px 0 2px @color, 120px 40px 0 2px @color, 0 0 0 2px violet;
-//     } 
-//   }
+    });
+}
+function handleTimelineEffects(){
+    
+}
