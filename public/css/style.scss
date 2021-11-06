@@ -102,7 +102,7 @@ $wave-position-offsetX: 1rem;
     @extend %circular;
     box-shadow: 0 0 0.2rem 0.2rem aqua;
     z-index: +99;
-    animation: wave-motion-y 10s infinite alternate linear;
+    // animation: wave-motion-y 10s infinite alternate linear;
     // @for $index from 1 through $particle-count{
     //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
     //   :nth-of-type(#{$index}){
@@ -111,25 +111,25 @@ $wave-position-offsetX: 1rem;
     //   }
     // }
 }
-.wave-motion-x{
-  animation: wave-motion-x 10s infinite alternate ease-in-out;
+// .wave-motion-x{
+  // animation: wave-motion-x 10s infinite alternate ease-in-out;
   // @for $index from 1 through $particle-count{
   //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
   //   &:nth-of-type(#{$index}){
   //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
   //   }
   // }
-}
+// }
 .waves{
-  @for $index from 1 through $particle-count{
-    & .wave-motion-x:nth-of-type(#{$index}){
-      animation-delay: -#{$wave-motion-delay-per-particle * $index};
+  // @for $index from 1 through $particle-count{
+  //   & .wave-motion-x:nth-of-type(#{$index}){
+  //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
 
-    };
-    & .wave-particle:nth-of-type(#{$index}){
-      animation-delay: -#{$wave-motion-delay-per-particle * $index};
-    };
-  }
+  //   };
+  //   & .wave-particle:nth-of-type(#{$index}){
+  //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
+  //   };
+  // }
 }
 .img-thumbnail{
     max-width: 100%;
