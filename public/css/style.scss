@@ -52,7 +52,7 @@
 .fit{
   width: fit-content;
 }
-.geeks {
+.branch {
   display: inline-block;
   /* width: 400px; */
   width: 60%;
@@ -68,7 +68,7 @@
   border-radius: 15%;
   /* transform: translate(-50%, -50%); */
 }
-.geeks::before {
+.branch::before {
   display: inline-block;
   content: "";
   position: absolute;
@@ -82,30 +82,19 @@
 .h4{
   font-size:  calc(0.5rem + 2vw);
 }
-/* .helix-small{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 8rem;
-  height: 16rem;
-  background: black;
-  border-radius: 50%;
-  z-index: +101;
-
-} */
 $particle-diameter: 0.7rem;
-$wave-motion-delay-per-particle: 0.1s;
+$wave-motion-delay-per-particle: 0.5s;
 $particle-count: 5;
-$particle-space-size: 1rem; 
+$particle-space-size: 2; 
 $wave-initial-position: $particle-count * ($particle-space-size + $particle-diameter);
-$wave-position-offsetY: 15vh;
+$wave-position-offsetY: -6rem;
+$wave-position-offsetX: 1rem;
 .wave-particle{
     @extend %flex-center;
     @extend %margin-center;
     width: $particle-diameter;
     height: $particle-diameter;
+    top: -#{$particle-diameter};
     background: rgb(10,10,10);
     position: absolute;
     left: 0;
@@ -113,14 +102,34 @@ $wave-position-offsetY: 15vh;
     @extend %circular;
     box-shadow: 0 0 0.2rem 0.2rem aqua;
     z-index: +99;
-    animation: wave-motion 10s infinite alternate ease-in-out;
-    @for $index from 1 through $particle-count{
-      $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
-      &:nth-of-type(#{$index}){
-        animation-delay: -#{$wave-motion-delay-per-particle * $index};
-        top: $wave-position-offsetY + $wave-particle-position;
-      }
-    }
+    animation: wave-motion-y 10s infinite alternate linear;
+    // @for $index from 1 through $particle-count{
+    //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
+    //   :nth-of-type(#{$index}){
+    //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
+    //     top: $wave-position-offsetY + $wave-particle-position;
+    //   }
+    // }
+}
+.wave-motion-x{
+  animation: wave-motion-x 10s infinite alternate ease-in-out;
+  // @for $index from 1 through $particle-count{
+  //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
+  //   &:nth-of-type(#{$index}){
+  //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
+  //   }
+  // }
+}
+.waves{
+  @for $index from 1 through $particle-count{
+    & .wave-motion-x:nth-of-type(#{$index}){
+      animation-delay: -#{$wave-motion-delay-per-particle * $index};
+
+    };
+    & .wave-particle:nth-of-type(#{$index}){
+      animation-delay: -#{$wave-motion-delay-per-particle * $index};
+    };
+  }
 }
 .img-thumbnail{
     max-width: 100%;
@@ -140,23 +149,6 @@ $wave-position-offsetY: 15vh;
 .trunc-width{
     max-width: 12rem;
 }
-// #timeline {
-//     position: absolute;
-//     border-left-style: dotted;
-//     border-left-width: 0.3rem;
-//     border-left-color: white;
-//     height: 80%;
-//     left: 50%;
-//     top: 15%;
-//     z-index: +50;
-// }
-
-// .wrap{
-//     margin: 100px auto;
-//     width: 130px;
-// }
-
-/* @color: blue; */
 
 @keyframes elongate {
     0% {
@@ -167,50 +159,56 @@ $wave-position-offsetY: 15vh;
         left: 100%;
     }
 }
-$amplitude: 4rem;
+$amplitude: 3rem;
 $step: 5rem;
-@keyframes wave-motion{
+@keyframes wave-motion-y{
   0% {
-    transform: translate(0, 1rem);
+    transform: translateY(1rem);
   }
   10%{
-    transform: translate(-#{$amplitude}, $step);
+    transform: translateY($step);
   }
   30%{
-    transform: translate($amplitude, 2*$step);
+    transform: translateY(2*$step);
   }
   50%{
-    transform: translate(-#{$amplitude}, 3*$step);
+    transform: translateY(3*$step);
   }
   70%{
-    transform: translate($amplitude, 4*$step);
+    transform: translateY(4*$step);
   }
   90%{
-    transform: translate(-#{$amplitude}, 5*$step);
+    transform: translateY(5*$step);
   }
   100%{
-    transform: translate(0rem, 6*$step)
+    transform: translateY(6*$step)
+  }
+}
+@keyframes wave-motion-x{
+  0% {
+    transform: translateX(1rem);
+  }
+  10%{
+    transform: translateX(-#{$amplitude});
+  }
+  30%{
+    transform: translateX($amplitude);
+  }
+  50%{
+    transform: translateX(-#{$amplitude});
+  }
+  70%{
+    transform: translateX($amplitude);
+  }
+  90%{
+    transform: translateX(-#{$amplitude});
+  }
+  100%{
+    transform: translateX(0rem)
   }
 }
 
 
-/* @keyframes border{
-  0% {
-    box-shadow: 60px -60px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-  }
-  25% {
-    box-shadow: 0 -125px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-  }
-  50% {
-    box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px yellow;
-  }
-  75% {
-    box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, 0px 125px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px violet;
-  }
-  100% {
-    box-shadow: 0 -125px 0 2px @color, -125px 0px 0 2px @color, 0px 125px 0 2px @color, 120px 40px 0 2px @color, 0 0 0 2px violet;
-  } 
-} */
 
 @media (max-width: 576px){
   .background{
@@ -220,7 +218,7 @@ $step: 5rem;
   #timeline{
     border: none;
   }
-  .geeks, .geeks::before{
+  .branch, .branch::before{
     background-color: transparent;
     width: 0;
   }
