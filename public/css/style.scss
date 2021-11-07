@@ -57,30 +57,25 @@
 }
 .branch {
   display: inline-block;
-  /* width: 400px; */
   width: 65%;
   height: 0.3rem;
   background: aqua;
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
   position: relative;
   bottom: 3px;
   left: 3%;
-  z-index: +1;
+  z-index: -1;
   border-radius: 15%;
-  /* transform: translate(-50%, -50%); */
-  &::before{
-    display: inline-block;
-    content: "";
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    height: 0.3rem;
-    background: rgb(10, 10, 10);
-    animation: elongate 1s linear 1 1.2s forwards; 
-    z-index: +1;
-  }
+}
+.branch-slide{
+  display: inline-block;
+  content: "";
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  height: 0.3rem;
+  background: rgb(10, 10, 10);
+  // animation: slideOut-horizontal 1s linear 1 1.2s forwards; 
+  z-index: +1;
 }
 .circle{
   position: relative;
@@ -90,7 +85,6 @@
   height: 12px;
   @extend %circular;
   background: transparent;
-  /* box-shadow: 60px -60px 0 2px @color, -60px -60px 0 2px @color, -60px 60px 0 2px @color, 60px 60px 0 2px @color, 0 0 0 2px green; */
   cursor: none;
 }
 .fit{
@@ -121,125 +115,48 @@
 .trunc-width{
     max-width: 12rem;
 }
+$timeline-length: 85vh;
+$timeline-width: 0.1rem;
 #timeline{
-  
-  width: 0.1rem;
+  display: inline-block;
+  width: $timeline-width;
   background-color: aqua;
-  box-shadow: 0 0 0.2rem 0.3rem aqua;
-  height: 85vh;
+  box-shadow: 0 0 0.1rem 0.2rem aqua;
+  height: $timeline-length;
   @extend %absolute-center;
   top: 16%;
   z-index: +1000;
   border-radius: 0.5%;
 }
-// $particle-diameter: 0.7rem;
-// $wave-motion-delay-per-particle: 0.5s;
-// $particle-count: 5;
-// $particle-space-size: 2; 
-// $wave-initial-position: $particle-count * ($particle-space-size + $particle-diameter);
-// $wave-position-offsetY: -6rem;
-// $wave-position-offsetX: 1rem;
-// .wave-particle{
-//     @extend %flex-center;
-//     @extend %margin-center;
-//     width: $particle-diameter;
-//     height: $particle-diameter;
-//     top: -#{$particle-diameter};
-//     background: rgb(10,10,10);
-//     position: absolute;
-//     left: 0;
-//     right: 0;
-//     @extend %circular;
-//     box-shadow: 0 0 0.2rem 0.2rem aqua;
-//     z-index: +99;
-//     animation: wave-motion-y 10s infinite alternate linear;
-//     // @for $index from 1 through $particle-count{
-//     //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
-//     //   :nth-of-type(#{$index}){
-//     //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
-//     //     top: $wave-position-offsetY + $wave-particle-position;
-//     //   }
-//     // }
-// }
-// .wave-motion-x{
-//   animation: wave-motion-x 10s infinite alternate ease-in-out;
-//   // @for $index from 1 through $particle-count{
-//   //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
-//   //   &:nth-of-type(#{$index}){
-//   //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
-//   //   }
-//   // }
-// }
-// .waves{
-//   @for $index from 1 through $particle-count{
-//     & .wave-motion-x:nth-of-type(#{$index}){
-//       animation-delay: -#{$wave-motion-delay-per-particle * $index};
-
-//     };
-//     & .wave-particle:nth-of-type(#{$index}){
-//       animation-delay: -#{$wave-motion-delay-per-particle * $index};
-//     };
-//   }
-// }
-@keyframes elongate {
-    0% {
-        left: 0;
-        box-shadow: 0 0 0 0 rgb(10, 10, 10);
-    }
-    100% {
-        left: 100%;
-    }
+#timeline-slide{
+  display: inline-block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $timeline-width;
+  height: $timeline-length;
+  background: rgb(10, 10, 10);
+  // animation: slideOut-vertical 4s linear 1 1.2s forwards; 
+  box-shadow: 0 0 0.2rem 0.3rem rgb(10, 10, 10);
 }
-// $amplitude: 3rem;
-// $step: 5rem;
-// @keyframes wave-motion-y{
-//   0% {
-//     transform: translateY(1rem);
-//   }
-//   10%{
-//     transform: translateY($step);
-//   }
-//   30%{
-//     transform: translateY(2*$step);
-//   }
-//   50%{
-//     transform: translateY(3*$step);
-//   }
-//   70%{
-//     transform: translateY(4*$step);
-//   }
-//   90%{
-//     transform: translateY(5*$step);
+// @keyframes slideOut-horizontal {
+//     0% {
+//         left: 0;
+//         box-shadow: 0 0 0 0 rgb(10, 10, 10);
+//     }
+//     100% {
+//         left: 100%;
+//     }
+// }
+// @keyframes slideOut-vertical{
+//   0%{
+//     top: 0;
 //   }
 //   100%{
-//     transform: translateY(6*$step)
+//     top: 100%;
 //   }
 // }
-// @keyframes wave-motion-x{
-//   0% {
-//     transform: translateX(1rem);
-//   }
-//   10%{
-//     transform: translateX(-#{$amplitude});
-//   }
-//   30%{
-//     transform: translateX($amplitude);
-//   }
-//   50%{
-//     transform: translateX(-#{$amplitude});
-//   }
-//   70%{
-//     transform: translateX($amplitude);
-//   }
-//   90%{
-//     transform: translateX(-#{$amplitude});
-//   }
-//   100%{
-//     transform: translateX(0rem)
-//   }
-// }
-
-
 @media (max-width: 576px){
   .background{
     background-color: black;
@@ -248,7 +165,7 @@
   #timeline{
     border: none;
   }
-  .branch, .branch::before{
+  .branch, .branch-slide{
     background-color: transparent;
     width: 0;
   }
