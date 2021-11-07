@@ -5,10 +5,27 @@
 }
 %margin-center{
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+}
+%absolute-center{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 %circular{
   border-radius: 100%;
+}
+.circle-center{
+  position: absolute;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+  @extend %circular;
+  @extend %absolute-center;
+  background: transparent;
+  cursor: none;
 }
 .align-hor-left, .align-hor-right{
     width: fit-content;
@@ -38,6 +55,33 @@
     padding-left: 1rem;
     padding-right: 0;
 }
+.branch {
+  display: inline-block;
+  /* width: 400px; */
+  width: 65%;
+  height: 0.3rem;
+  background: aqua;
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  position: relative;
+  bottom: 3px;
+  left: 3%;
+  z-index: +1;
+  border-radius: 15%;
+  /* transform: translate(-50%, -50%); */
+  &::before{
+    display: inline-block;
+    content: "";
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 0.3rem;
+    background: rgb(10, 10, 10);
+    animation: elongate 1s linear 1 1.2s forwards; 
+    z-index: +1;
+  }
+}
 .circle{
   position: relative;
   display: inline-block;
@@ -52,84 +96,8 @@
 .fit{
   width: fit-content;
 }
-.branch {
-  display: inline-block;
-  /* width: 400px; */
-  width: 60%;
-  height: 0.3rem;
-  background: aqua;
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
-  position: relative;
-  bottom: 3px;
-  left: 10%;
-  z-index: +1;
-  border-radius: 15%;
-  /* transform: translate(-50%, -50%); */
-}
-.branch::before {
-  display: inline-block;
-  content: "";
-  position: absolute;
-  top: 0%;
-  width: 100%;
-  height: 0.3rem;
-  background: rgb(10, 10, 10);
-  animation: elongate 1s linear 1 1.2s forwards; 
-  z-index: +1;
-}
 .h4{
   font-size:  calc(0.5rem + 2vw);
-}
-$particle-diameter: 0.7rem;
-$wave-motion-delay-per-particle: 0.5s;
-$particle-count: 5;
-$particle-space-size: 2; 
-$wave-initial-position: $particle-count * ($particle-space-size + $particle-diameter);
-$wave-position-offsetY: -6rem;
-$wave-position-offsetX: 1rem;
-.wave-particle{
-    @extend %flex-center;
-    @extend %margin-center;
-    width: $particle-diameter;
-    height: $particle-diameter;
-    top: -#{$particle-diameter};
-    background: rgb(10,10,10);
-    position: absolute;
-    left: 0;
-    right: 0;
-    @extend %circular;
-    box-shadow: 0 0 0.2rem 0.2rem aqua;
-    z-index: +99;
-    animation: wave-motion-y 10s infinite alternate linear;
-    // @for $index from 1 through $particle-count{
-    //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
-    //   :nth-of-type(#{$index}){
-    //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
-    //     top: $wave-position-offsetY + $wave-particle-position;
-    //   }
-    // }
-}
-.wave-motion-x{
-  animation: wave-motion-x 10s infinite alternate ease-in-out;
-  // @for $index from 1 through $particle-count{
-  //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
-  //   &:nth-of-type(#{$index}){
-  //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
-  //   }
-  // }
-}
-.waves{
-  @for $index from 1 through $particle-count{
-    & .wave-motion-x:nth-of-type(#{$index}){
-      animation-delay: -#{$wave-motion-delay-per-particle * $index};
-
-    };
-    & .wave-particle:nth-of-type(#{$index}){
-      animation-delay: -#{$wave-motion-delay-per-particle * $index};
-    };
-  }
 }
 .img-thumbnail{
     max-width: 100%;
@@ -143,13 +111,76 @@ $wave-position-offsetX: 1rem;
 .navbar-light .text-darkgrey{
     color: darkgrey;
 }
+.row > *{
+  padding-right: calc(var(--bs-gutter-x) * 0.3);
+  padding-left: calc(var(--bs-gutter-x) * 0.3);
+}
 .text-white{
     color: white;
 }
 .trunc-width{
     max-width: 12rem;
 }
+#timeline{
+  
+  width: 0.1rem;
+  background-color: aqua;
+  box-shadow: 0 0 0.2rem 0.3rem aqua;
+  height: 85vh;
+  @extend %absolute-center;
+  top: 16%;
+  z-index: +1000;
+  border-radius: 0.5%;
+}
+// $particle-diameter: 0.7rem;
+// $wave-motion-delay-per-particle: 0.5s;
+// $particle-count: 5;
+// $particle-space-size: 2; 
+// $wave-initial-position: $particle-count * ($particle-space-size + $particle-diameter);
+// $wave-position-offsetY: -6rem;
+// $wave-position-offsetX: 1rem;
+// .wave-particle{
+//     @extend %flex-center;
+//     @extend %margin-center;
+//     width: $particle-diameter;
+//     height: $particle-diameter;
+//     top: -#{$particle-diameter};
+//     background: rgb(10,10,10);
+//     position: absolute;
+//     left: 0;
+//     right: 0;
+//     @extend %circular;
+//     box-shadow: 0 0 0.2rem 0.2rem aqua;
+//     z-index: +99;
+//     animation: wave-motion-y 10s infinite alternate linear;
+//     // @for $index from 1 through $particle-count{
+//     //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
+//     //   :nth-of-type(#{$index}){
+//     //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
+//     //     top: $wave-position-offsetY + $wave-particle-position;
+//     //   }
+//     // }
+// }
+// .wave-motion-x{
+//   animation: wave-motion-x 10s infinite alternate ease-in-out;
+//   // @for $index from 1 through $particle-count{
+//   //   $wave-particle-position: $wave-initial-position - (($particle-diameter * $particle-space-size) * $index);
+//   //   &:nth-of-type(#{$index}){
+//   //     animation-delay: -#{$wave-motion-delay-per-particle * $index};
+//   //   }
+//   // }
+// }
+// .waves{
+//   @for $index from 1 through $particle-count{
+//     & .wave-motion-x:nth-of-type(#{$index}){
+//       animation-delay: -#{$wave-motion-delay-per-particle * $index};
 
+//     };
+//     & .wave-particle:nth-of-type(#{$index}){
+//       animation-delay: -#{$wave-motion-delay-per-particle * $index};
+//     };
+//   }
+// }
 @keyframes elongate {
     0% {
         left: 0;
@@ -159,55 +190,54 @@ $wave-position-offsetX: 1rem;
         left: 100%;
     }
 }
-$amplitude: 3rem;
-$step: 5rem;
-@keyframes wave-motion-y{
-  0% {
-    transform: translateY(1rem);
-  }
-  10%{
-    transform: translateY($step);
-  }
-  30%{
-    transform: translateY(2*$step);
-  }
-  50%{
-    transform: translateY(3*$step);
-  }
-  70%{
-    transform: translateY(4*$step);
-  }
-  90%{
-    transform: translateY(5*$step);
-  }
-  100%{
-    transform: translateY(6*$step)
-  }
-}
-@keyframes wave-motion-x{
-  0% {
-    transform: translateX(1rem);
-  }
-  10%{
-    transform: translateX(-#{$amplitude});
-  }
-  30%{
-    transform: translateX($amplitude);
-  }
-  50%{
-    transform: translateX(-#{$amplitude});
-  }
-  70%{
-    transform: translateX($amplitude);
-  }
-  90%{
-    transform: translateX(-#{$amplitude});
-  }
-  100%{
-    transform: translateX(0rem)
-  }
-}
-
+// $amplitude: 3rem;
+// $step: 5rem;
+// @keyframes wave-motion-y{
+//   0% {
+//     transform: translateY(1rem);
+//   }
+//   10%{
+//     transform: translateY($step);
+//   }
+//   30%{
+//     transform: translateY(2*$step);
+//   }
+//   50%{
+//     transform: translateY(3*$step);
+//   }
+//   70%{
+//     transform: translateY(4*$step);
+//   }
+//   90%{
+//     transform: translateY(5*$step);
+//   }
+//   100%{
+//     transform: translateY(6*$step)
+//   }
+// }
+// @keyframes wave-motion-x{
+//   0% {
+//     transform: translateX(1rem);
+//   }
+//   10%{
+//     transform: translateX(-#{$amplitude});
+//   }
+//   30%{
+//     transform: translateX($amplitude);
+//   }
+//   50%{
+//     transform: translateX(-#{$amplitude});
+//   }
+//   70%{
+//     transform: translateX($amplitude);
+//   }
+//   90%{
+//     transform: translateX(-#{$amplitude});
+//   }
+//   100%{
+//     transform: translateX(0rem)
+//   }
+// }
 
 
 @media (max-width: 576px){
