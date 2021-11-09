@@ -20,9 +20,7 @@
 }
 
 .align-hor-left, .align-hor-right {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 50vw;
 }
 
 .align-hor-left {
@@ -35,6 +33,14 @@
   margin-left: 50%;
 }
 
+.align-hor-left .circle {
+  left: 0;
+}
+
+.align-hor-right .circle {
+  right: 0;
+}
+
 .align-ver-center {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -43,32 +49,40 @@
 
 .background {
   background-color: white;
-  background-image: -webkit-gradient(linear, right top, left top, from(#0a0a0a), color-stop(15%, #0a0a0a), color-stop(25%, #646464), color-stop(35%, #0a0a0a), color-stop(50%, #0a0a0a), color-stop(65%, #0a0a0a), color-stop(75%, #646464), color-stop(85%, #0a0a0a), to(#0a0a0a));
-  background-image: linear-gradient(to left, #0a0a0a, #0a0a0a 15%, #646464 25%, #0a0a0a 35%, #0a0a0a 50%, #0a0a0a 65%, #646464 75%, #0a0a0a 85%, #0a0a0a 100%);
-  min-height: 30rem;
+  background-image: -webkit-gradient(linear, right top, left top, from(#0a0a0a), color-stop(40%, #0a0a0a), color-stop(50%, white), color-stop(60%, #0a0a0a), to(#0a0a0a));
+  background-image: linear-gradient(to left, #0a0a0a, #0a0a0a 40%, white 50%, #0a0a0a 60%, #0a0a0a 100%);
+  min-height: 1rem;
 }
 
 .blog-content {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  padding-left: 1rem;
-  padding-right: 0;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+.bold {
+  font-weight: 400;
 }
 
 .branch {
-  display: inline-block;
-  width: 65%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 20vw;
   height: 0.3rem;
   background: aqua;
   position: relative;
-  bottom: 3px;
-  left: 3%;
+  top: 50%;
+  left: 1vw;
   z-index: -1;
   border-radius: 15%;
 }
 
 .branch-slide {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   content: "";
   position: absolute;
   top: 0%;
@@ -80,7 +94,12 @@
 
 .circle {
   position: relative;
-  display: inline-block;
+  top: 50%;
+  left: 1.8vw;
+  right: 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   overflow: hidden;
   width: 12px;
   height: 12px;
@@ -96,6 +115,11 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+footer {
+  position: relative;
+  z-index: +1000;
 }
 
 .h4 {
@@ -130,6 +154,15 @@
   bottom: 2.8rem;
 }
 
+.text-end {
+  margin-right: 0;
+}
+
+.text-Raleway {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
+
 .text-white {
   color: white;
 }
@@ -144,8 +177,7 @@
   background-color: aqua;
   -webkit-box-shadow: 0 0 0.1rem 0.2rem aqua;
           box-shadow: 0 0 0.1rem 0.2rem aqua;
-  height: 75vh;
-  top: 16%;
+  top: 17.5%;
   z-index: +1000;
   border-radius: 0.5%;
   opacity: 0;
@@ -158,7 +190,6 @@
   top: 0;
   left: 0;
   width: 0.1rem;
-  height: 75vh;
   background: #0a0a0a;
   -webkit-box-shadow: 0 0 0.2rem 0.3rem #0a0a0a;
           box-shadow: 0 0 0.2rem 0.3rem #0a0a0a;

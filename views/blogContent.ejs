@@ -1,50 +1,69 @@
+<%if(page == "home"){ %>
 <div class="opacity-control">
     <div class="circle-center top"></div>
     <div id="timeline"></div>
     <div class="circle-center bottom"></div>
 </div>
 <div class="blog-content">
-    <div class="container align-hor-left">
-        <div class="row">
-            <div class="col-lg entry-text">
-                <h4 class="h4 text-responsive">It's all going to be okay</h3>
-                <p class="text-truncate trunc-width">
-                    Meditation really is vital, feeling really grateful for everything.
-                </p>
-            </div>
-            <div class="col-lg">
-                <div class="row align-ver-center">
-                    <div class="col-lg-8">
-                        <img class="img-thumbnail" src="images/Meditation-639x426.jpg" alt="meditation img" >
-                    <!-- <hr style="display: inline-block; width: 2rem"> -->
+    <%for(let index = 0; index < journalEntries.length; index++){ %>
+        <%if(index % 2 == 0 || index == 0){%>
+            <div class="container align-hor-left">
+                <div class="row">
+                    <div class="col-lg entry-text text-start">
+                        <h4 class="h4"><%=journalEntries[index].title%></h4>
+                        <p class="text-truncate trunc-width">
+                            <%=journalEntries[index].content%>
+                        </p>
                     </div>
-                    <div class="col-lg-4 opacity-control">
-                        <div class="circle"></div>
-                        <div class="branch"><div class="branch-slide"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container align-hor-right">
-        <div class="row">
-            <div class="col-lg">
-                <div class="row align-ver-center">
-                    <div class="col-lg-4 opacity-control">
-                        <div class="branch"><div class="branch-slide"></div></div>
-                        <div class="circle"></div>
-                    </div>
-                    <div class="col-lg-8">
-                        <img class="img-thumbnail" src="images/Meditation-639x426.jpg" alt="meditation img" >
+                    <div class="col-lg align-ver-center">
+                        <!-- <div class="row"> -->
+                            <!-- <div class="col-lg-7">
+                                console.log(journalEntries[index])
+                                if(journalEntries[index].img == undefined){
+                                    <img class="img-thumbnail mb-4" src="images/enter.png" alt="meditation img" >
+                                } 
+                                else{ 
+                                    <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
+                                } 
+                            </div> -->
+                            <div class="opacity-control">
+                                <div class="circle"></div>
+                                <div class="branch"><div class="branch-slide"></div></div>
+                            </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
-            <div class="col-lg entry-text">
-                <h4 class="h4 text-responsive">It's all going to be okay</h3>
-                <p class="text-truncate trunc-width">
-                    Meditation really is vital, feeling really grateful for everything.
-                </p>
-            </div>
-        </div>
-    </div> 
+        <%}%>
+        <%if(index % 2 == 1){ %>
+            <div class="container align-hor-right">
+                <div class="row">
+                    <div class="col-lg align-ver-center">
+                        <!-- <div class="row"> -->
+                            <div class="opacity-control">
+                                <div class="branch"><div class="branch-slide"></div></div>
+                                <div class="circle"></div>
+                            <!-- </div>
+                            <div class="col-lg-7">
+                                console.log(journalEntries[index])
+                                if(journalEntries[index].img == undefined){
+                                    <img class="img-thumbnail mb-4" src="images/enter.png" alt="meditation img" >
+                                }
+                                else{ 
+                                    <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
+                                 }
+                            </div> -->
+                            </div>
+                    </div>
+                    <div class="col-lg entry-text text-start">
+                        <h4 class="h4"><%=journalEntries[index].title%></h4>
+                        <p class="text-truncate trunc-width">
+                            <%=journalEntries[index].content%>
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        <%}%>
+    <%}%>
 </div>
+<%}%>

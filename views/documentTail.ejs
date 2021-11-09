@@ -7,8 +7,35 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <!--jQuery Local-->    
     <script src="jQuery-3.6.0.js"></script>
+
+    <!-- jQuery keyframes-->
     <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
-    <script type="module" src="/scripts/jquery.keyframes.min.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="/scripts/jquery.keyframes.js"></script>
+
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/2bd9cd6d32.js" crossorigin="anonymous"></script>
+    
+    <!-- Blog home page animations-->
+    <% if(page == "home"){ %>
+        <script src="animations.js"></script>
+    <% } %>
 </body>
+<footer class="bg-light text-center mt-4">
+    <div class="container p-4">
+        <!--Social media-->
+        <section>
+            <a class="m-2" href="https://www.facebook.com/profile.php?id=100003245864132" alt="Facebook page">
+                <span class="fab fa-2x fa-facebook"></span>
+            </a>
+            <a class="m-2" href="https://www.instagram.com/samuel__social/" alt="Instagram page">
+                <span class="fab fa-2x fa-instagram"></span>
+            </a>
+        </section>
+        //Copyright
+        <div class="container text-center p-3">
+            <span class="text-black">© 2021 Copyright:</span>
+            <a href="https://sam5210.github.io/CV_Updated_5/">Samuel Yang</a>
+        </div>
+    </div>
+</footer>
 </html>

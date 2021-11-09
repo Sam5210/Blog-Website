@@ -28,7 +28,7 @@
   cursor: none;
 }
 .align-hor-left, .align-hor-right{
-    width: fit-content;
+    width: 50vw;
 }
 .align-hor-left{
     margin-left: 0;
@@ -38,36 +38,46 @@
     margin-right: 0;
     margin-left: 50%;
 }
+.align-hor-left .circle{
+  left: 0;
+}
+.align-hor-right .circle{
+  right: 0;
+}
 .align-ver-center{
   align-items: center;
 }
 .background {
     background-color: white;
-    background-image: -webkit-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 15%, rgb(100, 100, 100) 25%, rgb(10, 10, 10) 35%, rgb(10, 10, 10) 50%, rgb(10, 10, 10) 65%, rgb(100, 100, 100) 75%, rgb(10, 10, 10) 85%, rgb(10, 10, 10) 100%);
-    background-image:-moz-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 15%, rgb(100, 100, 100) 25%, rgb(10, 10, 10) 35%, rgb(10, 10, 10) 50%, rgb(10, 10, 10) 65%, rgb(100, 100, 100) 75%, rgb(10, 10, 10) 85%, rgb(10, 10, 10) 100%);
-    background-image:-o-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 15%, rgb(100, 100, 100) 25%, rgb(10, 10, 10) 35%, rgb(10, 10, 10) 50%, rgb(10, 10, 10) 65%, rgb(100, 100, 100) 75%, rgb(10, 10, 10) 85%, rgb(10, 10, 10) 100%);
-    background-image: linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 15%, rgb(100, 100, 100) 25%, rgb(10, 10, 10) 35%, rgb(10, 10, 10) 50%, rgb(10, 10, 10) 65%, rgb(100, 100, 100) 75%, rgb(10, 10, 10) 85%, rgb(10, 10, 10) 100%);
-    min-height: 30rem;
+    background-image:  -webkit-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 40%, white 50%, rgb(10, 10, 10) 60%, rgb(10, 10, 10) 100%);
+    background-image:     -moz-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 40%, white 50%, rgb(10, 10, 10) 60%, rgb(10, 10, 10) 100%);
+    background-image:       -o-linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 40%, white 50%, rgb(10, 10, 10) 60%,  rgb(10, 10, 10) 100%);
+    background-image:          linear-gradient(to left, rgb(10, 10, 10), rgb(10, 10, 10) 40%, white 50%, rgb(10, 10, 10) 60%,  rgb(10, 10, 10) 100%);
+    min-height: 1rem;
 }
 .blog-content{
     padding-top: 5rem;
     padding-bottom: 5rem;
-    padding-left: 1rem;
-    padding-right: 0;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+}
+.bold{
+  font-weight: 400;
 }
 .branch {
-  display: inline-block;
-  width: 65%;
+  display: inline-flex;
+  width: 20vw;
   height: 0.3rem;
   background: aqua;
   position: relative;
-  bottom: 3px;
-  left: 3%;
+  // bottom: 3px;
+  top: 50%;
+  left: 1vw;
   z-index: -1;
   border-radius: 15%;
 }
 .branch-slide{
-  display: inline-block;
+  display: inline-flex;
   content: "";
   position: absolute;
   top: 0%;
@@ -79,7 +89,10 @@
 }
 .circle{
   position: relative;
-  display: inline-block;
+  top: 50%;
+  left: 1.8vw;
+  right: 0;
+  display: inline-flex;
   overflow: hidden;
   width: 12px;
   height: 12px;
@@ -92,6 +105,10 @@
 }
 .fit{
   width: fit-content;
+}
+footer{
+  position: relative;
+  z-index: +1000;
 }
 .h4{
   font-size:  calc(0.5rem + 2vw);
@@ -118,6 +135,13 @@
 .bottom{
   bottom: 2.8rem;
 }
+.text-end{
+  margin-right: 0;
+}
+.text-Raleway{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
 .text-white{
     color: white;
 }
@@ -131,9 +155,9 @@ $timeline-width: 0.1rem;
   width: $timeline-width;
   background-color: aqua;
   box-shadow: 0 0 0.1rem 0.2rem aqua;
-  height: $timeline-length;
+  // min-height: $timeline-length;
   @extend %absolute-center;
-  top: 16%;
+  top: 17.5%;
   z-index: +1000;
   border-radius: 0.5%;
   opacity: 0;
@@ -145,29 +169,13 @@ $timeline-width: 0.1rem;
   top: 0;
   left: 0;
   width: $timeline-width;
-  height: $timeline-length;
+  // height: $timeline-length;
   background: rgb(10, 10, 10);
   // animation: slideOut-vertical 4s linear 1 1.2s forwards; 
   box-shadow: 0 0 0.2rem 0.3rem rgb(10, 10, 10);
   overflow: clip;
 }
-// @keyframes slideOut-horizontal {
-//     0% {
-//         left: 0;
-//         box-shadow: 0 0 0 0 rgb(10, 10, 10);
-//     }
-//     100% {
-//         left: 100%;
-//     }
-// }
-// @keyframes slideOut-vertical{
-//   0%{
-//     top: 0;
-//   }
-//   100%{
-//     top: 100%;
-//   }
-// }
+
 @media (max-width: 576px){
   .background{
     background-color: black;

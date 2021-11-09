@@ -1,10 +1,26 @@
-$(main);
+$(document).ready(function(){
+    $(window).on("resize", function(event){
+        setUpTimelineAndBranchesParameters();
+        if($(window).width() >= 562){
+            main();
+        }
+        else if($(window).width() < 562){
+            
+        }
+    });
+    main();
+});
 function main() {
     //Circle animation parameters
     let circles = setUpCirclesParameters();
 
     //timeline and branch total parameters
+    //get timeline
     let timeline = $("#timeline");
+    let timelineSlide = $("#timeline-slide");
+    setUpTimelineAndBranchesParameters();
+    
+    //get branches
     let leftbranchSlide = $(".align-hor-left .branch-slide");
     let rightbranchSlide = $(".align-hor-right .branch-slide");
     //Setting up animations
@@ -21,10 +37,11 @@ function playEntryAnimations(initialAnimationDelay){
     let rightText = $(".align-hor-right .entry-text");
     let leftTextWidth = leftText.css('width');
     let rightTextWidth = rightText.css('width');
+    console.log("righttextwidth = " + rightTextWidth);
     images.css('opacity', '0');
     leftText.css('opacity', '0');
     rightText.css('opacity', '0');
-
+    let textOffset = "7%";
     let imageFadeInDuration = 0.5;
     let textFadeInDuration = 0.5;
     $.keyframe.define([{
@@ -34,13 +51,12 @@ function playEntryAnimations(initialAnimationDelay){
     },{
         name:   'fade-in-left',
         '0%':   {'opacity': '0', 'left':  leftTextWidth},
-        '100%': {'opacity': '1', 'left':  '0'}
+        '100%': {'opacity': '1', 'left':  textOffset}
     },{
-        name: 'fade-in-right',
+        name:   'fade-in-right',
         '0%':   {'opacity': '0', 'right':  rightTextWidth},
-        '100%': {'opacity': '1', 'right':  '0'}
-    }
-    ]);
+        '100%': {'opacity': '1', 'right':  "-" + textOffset}
+    }]);
     images.playKeyframe({
         name:   'fade-in',
         duration:   String(imageFadeInDuration) + 's',
@@ -66,9 +82,6 @@ function playEntryAnimations(initialAnimationDelay){
         fillMode: 'forwards',
     });
 }
-
-
-
 
 
 function setUpCirclesParameters(){
@@ -209,6 +222,29 @@ function setUpCirclesParameters(){
 
     };
     return Circles;
+}
+function setUpTimelineAndBranchesParameters(){
+    //calculate timeline and the bottom circle's vertical position
+    let navbarTotalHeight = String($(".navbar").css("height"));
+    let navbarMarginBottom = String($(".navbar").css("margin-bottom"));
+    let blogTopPadding = $(".blog-content").css("padding-top");
+    let blogBottomPadding = $(".blog-content").css("padding-bottom");
+    let timelineHeight = "-25";
+    $(".container.align-hor-left").each(function(index){
+        timelineHeight = String(Number(timelineHeight) + $(this).height());
+    });
+    $(".container.align-hor-right").each(function(index){
+        timelineHeight = String(Number(timelineHeight) + $(this).height());
+    });
+    timelineHeight = String(Number(timelineHeight) 
+            + Number(blogTopPadding.substring(0, blogTopPadding.length-2)) 
+            + Number(blogBottomPadding.substring(0, blogBottomPadding.length-2))) 
+            + "px";
+    $("#timeline").css('top', `calc(1.2rem + ${navbarTotalHeight} + ${navbarMarginBottom})`);
+    $("#timeline").css("height", timelineHeight);
+    $("#timeline-slide").css("height", timelineHeight);
+    $(".circle-center.bottom").css('top', `calc(${navbarTotalHeight} + ${timelineHeight} + ${navbarMarginBottom} + 1.5rem`);
+    console.log("timeline height = " + timelineHeight);
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){
     var supportedFlag = $.keyframe.isSupported();
