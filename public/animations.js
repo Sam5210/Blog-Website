@@ -4,9 +4,9 @@ $(document).ready(function(){
         if($(window).width() >= 562){
             main();
         }
-        else if($(window).width() < 562){
+        // else if($(window).width() < 562){
             
-        }
+        // }
     });
     main();
 });
@@ -94,6 +94,7 @@ function setUpCirclesParameters(){
     let offsetMedium = String(Number(offsetSmall.substring(0, offsetSmall.length - 2)) * (3)) + "px";
     let color = "aqua";
     let circleBackgroundColor = "rgb(10, 10, 10)";
+    let centerCirclesBackgroundColor = "rgb(10, 10, 10)";
     let blurSize = "3px";
     let spreadSize = "5px";
     let boxShadowValue = `${offsetSmall}  -${offsetSmall} 0 2px ${circleBackgroundColor}, -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
@@ -155,60 +156,60 @@ function setUpCirclesParameters(){
         ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
         0 0 ${blurSize} ${spreadSize} ${color}`;
 
-    const topCircleAnimation = {}; 
-    topCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        ${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    topCircleAnimation.Percent25 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    topCircleAnimation.Percent50 = `0 -${offsetBig} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor}, \
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    topCircleAnimation.Percent75 = `0 -${offsetBig} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor}, \
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    topCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        0px ${offsetBig} 0 2px ${circleBackgroundColor},\
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-
-    const bottomCircleAnimation = {};
-    bottomCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        ${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    bottomCircleAnimation.Percent25 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        ${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    bottomCircleAnimation.Percent50 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        0px ${offsetBig} 0 2px ${circleBackgroundColor},\
-        ${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    bottomCircleAnimation.Percent75 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        0px ${offsetBig} 0 2px ${circleBackgroundColor},\
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
-    bottomCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${circleBackgroundColor},\
-        -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
-        0px ${offsetBig} 0 2px ${circleBackgroundColor},\
-        ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
-        0 0 ${blurSize} ${spreadSize} ${color}`;
+        const topCircleAnimation = {}; 
+        topCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        topCircleAnimation.Percent25 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        topCircleAnimation.Percent50 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor}, \
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        topCircleAnimation.Percent75 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor}, \
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        topCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
         
+        const bottomCircleAnimation = {};
+        bottomCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        bottomCircleAnimation.Percent25 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        bottomCircleAnimation.Percent50 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        bottomCircleAnimation.Percent75 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+        bottomCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
+            0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
+            0 0 ${blurSize} ${spreadSize} ${color}`;
+            
     const Circles = {
         leftCircles: leftCircles,
         rightCircles: rightCircles,
@@ -232,9 +233,11 @@ function setUpTimelineAndBranchesParameters(){
     let timelineHeight = "-25";
     $(".container.align-hor-left").each(function(index){
         timelineHeight = String(Number(timelineHeight) + $(this).height());
+        timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
     });
     $(".container.align-hor-right").each(function(index){
         timelineHeight = String(Number(timelineHeight) + $(this).height());
+        timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
     });
     timelineHeight = String(Number(timelineHeight) 
             + Number(blogTopPadding.substring(0, blogTopPadding.length-2)) 
@@ -242,8 +245,9 @@ function setUpTimelineAndBranchesParameters(){
             + "px";
     $("#timeline").css('top', `calc(1.2rem + ${navbarTotalHeight} + ${navbarMarginBottom})`);
     $("#timeline").css("height", timelineHeight);
-    $("#timeline-slide").css("height", timelineHeight);
-    $(".circle-center.bottom").css('top', `calc(${navbarTotalHeight} + ${timelineHeight} + ${navbarMarginBottom} + 1.5rem`);
+    $("#timeline").css("min-height", "55vh");
+    // $("#timeline-slide").css("height", timelineHeight);
+    $(".circle-center.bottom").css('top', `calc(${navbarTotalHeight} + ${$("#timeline").css('height')} + ${navbarMarginBottom} + 1.5rem`);
     console.log("timeline height = " + timelineHeight);
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){

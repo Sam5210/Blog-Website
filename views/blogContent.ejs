@@ -7,13 +7,18 @@
 <div class="blog-content">
     <%for(let index = 0; index < journalEntries.length; index++){ %>
         <%if(index % 2 == 0 || index == 0){%>
-            <div class="container align-hor-left">
+            <div class="container align-hor-left mb-4">
                 <div class="row">
                     <div class="col-lg entry-text text-start">
-                        <h4 class="h4"><%=journalEntries[index].title%></h4>
-                        <p class="text-truncate trunc-width">
-                            <%=journalEntries[index].content%>
+                        <h3 class="h3"><%-journalEntries[index].title%></h3>
+                        <p class="text-truncate trunc-width entry-content h6">
+                            <%-journalEntries[index].content%>
                         </p>
+                        <form action="/entry" method="post">
+                            <button type="submit" name="button" value="<%=index%>" class="btn btn-lg btn-outline-light">
+                                Read More
+                            </button>
+                        </form>
                     </div>
                     <div class="col-lg align-ver-center">
                         <!-- <div class="row"> -->
@@ -36,15 +41,15 @@
             </div>
         <%}%>
         <%if(index % 2 == 1){ %>
-            <div class="container align-hor-right">
+            <div class="container align-hor-right mb-4">
                 <div class="row">
                     <div class="col-lg align-ver-center">
                         <!-- <div class="row"> -->
                             <div class="opacity-control">
                                 <div class="branch"><div class="branch-slide"></div></div>
                                 <div class="circle"></div>
-                            <!-- </div>
-                            <div class="col-lg-7">
+                            </div>
+                            <!-- <div class="col-lg-7">
                                 console.log(journalEntries[index])
                                 if(journalEntries[index].img == undefined){
                                     <img class="img-thumbnail mb-4" src="images/enter.png" alt="meditation img" >
@@ -52,14 +57,19 @@
                                 else{ 
                                     <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
                                  }
-                            </div> -->
                             </div>
+                        </div> -->
                     </div>
                     <div class="col-lg entry-text text-start">
-                        <h4 class="h4"><%=journalEntries[index].title%></h4>
-                        <p class="text-truncate trunc-width">
-                            <%=journalEntries[index].content%>
+                        <h3 class="h3"><%-journalEntries[index].title%></h3>
+                        <p class="text-truncate trunc-width entry-content h6">
+                            <%-journalEntries[index].content%>
                         </p>
+                        <form action="/entry" method="post">
+                            <button type="submit" name="button" value="<%=index%>" class="btn btn-lg btn-outline-light">
+                                Read More
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div> 
