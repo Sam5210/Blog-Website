@@ -8,8 +8,7 @@
     <%for(let index = 0; index < journalEntries.length; index++){ %>
         <%if(index % 2 == 0 || index == 0){%>
             <div class="container align-hor-left mb-4">
-                <div class="row">
-                    <div class="col-lg entry-text text-start">
+                    <div class="entry-text">
                         <h3 class="h3"><%-journalEntries[index].title%></h3>
                         <p class="text-truncate trunc-width entry-content h6">
                             <%-journalEntries[index].content%>
@@ -20,7 +19,7 @@
                             </button>
                         </form>
                     </div>
-                    <div class="fit align-ver-center">
+                    <div class="fit align-ver-center opacity-control">
                         <!-- <div class="row"> -->
                             <!-- <div class="col-lg-7">
                                 console.log(journalEntries[index])
@@ -31,24 +30,22 @@
                                     <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
                                 } 
                             </div> -->
-                            <div class="opacity-control">
+                            <!-- <div class="opacity-control"> -->
                                 <div class="circle"></div>
                                 <div class="branch"><div class="branch-slide"></div></div>
-                            </div>
+                            <!-- </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
             </div>
         <%}%>
         <%if(index % 2 == 1){ %>
             <div class="container align-hor-right mb-4">
-                <div class="row">
-                    <div class="fit align-ver-center">
+                    <div class="fit align-ver-center opacity-control">
                         <!-- <div class="row"> -->
-                            <div class="opacity-control">
+                            <!-- <div class="opacity-control"> -->
                                 <div class="branch"><div class="branch-slide"></div></div>
                                 <div class="circle"></div>
-                            </div>
+                            <!-- </div> -->
                             <!-- <div class="col-lg-7">
                                 console.log(journalEntries[index])
                                 if(journalEntries[index].img == undefined){
@@ -60,7 +57,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="col-lg entry-text text-start">
+                    <div class="entry-text">
                         <h3 class="h3"><%-journalEntries[index].title%></h3>
                         <p class="text-truncate trunc-width entry-content h6">
                             <%-journalEntries[index].content%>
@@ -71,7 +68,6 @@
                             </button>
                         </form>
                     </div>
-                </div>
             </div> 
         <%}%>
     <%}%>

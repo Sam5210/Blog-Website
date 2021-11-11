@@ -1,16 +1,22 @@
 $(document).ready(function(){
     $(window).on("resize", function(event){
-        setUpTimelineAndBranchesParameters();
-        if($(window).width() >= 562){
-            main();
-        }
-        // else if($(window).width() < 562){
-            
-        // }
+        setUpTimelineParameters();
+        main();
     });
     main();
 });
-function main() {
+function main(){
+    if($(window).width() >= 992){
+        playAllAnimations();
+    }
+    else if($(window).width() < 992 && $(window).width() >= 562){
+        playEntryAnimations(0, "20%");
+    }
+    else if($(window).width() < 562){
+        playEntryAnimations(0, "0");
+    }
+}
+function playAllAnimations() {
     //Circle animation parameters
     let circles = setUpCirclesParameters();
 
@@ -18,7 +24,7 @@ function main() {
     //get timeline
     let timeline = $("#timeline");
     let timelineSlide = $("#timeline-slide");
-    setUpTimelineAndBranchesParameters();
+    setUpTimelineParameters();
     
     //get branches
     let leftbranchSlide = $(".align-hor-left .branch-slide");
@@ -26,12 +32,12 @@ function main() {
     //Setting up animations
     let totalAnimationDuration = setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide);
     if(totalAnimationDuration != 0)
-        playEntryAnimations(totalAnimationDuration);
+        playEntryAnimations(totalAnimationDuration, "15%");
     else
         console.log("Warning: animation duration: 0");
 }
 
-function playEntryAnimations(initialAnimationDelay){
+function playEntryAnimations(initialAnimationDelay, textOffset){
     let images = $(".img-thumbnail");
     let leftText = $(".align-hor-left .entry-text");
     let rightText = $(".align-hor-right .entry-text");
@@ -41,7 +47,6 @@ function playEntryAnimations(initialAnimationDelay){
     images.css('opacity', '0');
     leftText.css('opacity', '0');
     rightText.css('opacity', '0');
-    let textOffset = "7%";
     let imageFadeInDuration = 0.5;
     let textFadeInDuration = 0.5;
     $.keyframe.define([{
@@ -55,7 +60,7 @@ function playEntryAnimations(initialAnimationDelay){
     },{
         name:   'fade-in-right',
         '0%':   {'opacity': '0', 'right':  rightTextWidth},
-        '100%': {'opacity': '1', 'right':  "-" + textOffset}
+        '100%': {'opacity': '1', 'right':  textOffset}
     }]);
     images.playKeyframe({
         name:   'fade-in',
@@ -232,7 +237,7 @@ function setUpCirclesParameters(){
     };
     return Circles;
 }
-function setUpTimelineAndBranchesParameters(){
+function setUpTimelineParameters(){
     //calculate timeline and the bottom circle's vertical position
     let navbarTotalHeight = String($(".navbar").css("height"));
     let navbarMarginBottom = String($(".navbar").css("margin-bottom"));
