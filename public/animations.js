@@ -24,7 +24,7 @@ function main() {
     let leftbranchSlide = $(".align-hor-left .branch-slide");
     let rightbranchSlide = $(".align-hor-right .branch-slide");
     //Setting up animations
-    let totalAnimationDuration = setUpAndPlayAnimations(circles, timeline, leftbranchSlide, rightbranchSlide);
+    let totalAnimationDuration = setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide);
     if(totalAnimationDuration != 0)
         playEntryAnimations(totalAnimationDuration);
     else
@@ -100,8 +100,6 @@ function setUpCirclesParameters(){
     let boxShadowValue = `${offsetSmall}  -${offsetSmall} 0 2px ${circleBackgroundColor}, -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
                                 -${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor}, ${offsetSmall} ${offsetSmall} 0 2px ${circleBackgroundColor},\
                                 0 0 ${blurSize} ${spreadSize} ${color}`;
-    leftCircles.css("box-shadow", boxShadowValue);
-    topCircle.css("box-shadow", boxShadowValue);
     const leftBranchCircleAnimation = {};
     leftBranchCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
         -${offsetSmall} -${offsetSmall} 0 2px ${circleBackgroundColor},\
@@ -127,6 +125,11 @@ function setUpCirclesParameters(){
         -${offsetBig} 0px 0 2px ${circleBackgroundColor},\
         0px ${offsetBig} 0 2px ${circleBackgroundColor},\
         ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
+        0 0 ${blurSize} ${spreadSize} ${color}`;
+    leftBranchCircleAnimation.After = `0 -${offsetBig} 0 2px orangered,\
+        -${offsetBig} 0px 0 2px orangered,\
+        0px ${offsetBig} 0 2px orangered,\
+        ${offsetBig} ${offsetMedium} 0 2px orangered,\
         0 0 ${blurSize} ${spreadSize} ${color}`;
 
     const rightBranchCircleAnimation = {};
@@ -155,6 +158,11 @@ function setUpCirclesParameters(){
         0px ${offsetBig} 0 2px ${circleBackgroundColor},\
         ${offsetBig} ${offsetMedium} 0 2px ${circleBackgroundColor},\
         0 0 ${blurSize} ${spreadSize} ${color}`;
+    rightBranchCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px transparent,\
+        -${offsetBig} -${offsetBig} 0 2px transparent,\
+        0px ${offsetBig} 0 2px transparent,\
+        ${offsetBig} ${offsetMedium} 0 2px transparent,\
+        0 0 ${blurSize} ${spreadSize} ${color}`;
 
         const topCircleAnimation = {}; 
         topCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
@@ -179,7 +187,7 @@ function setUpCirclesParameters(){
             0 0 ${blurSize} ${spreadSize} ${color}`;
         topCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
-            0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+            -${offsetBig} ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
             0 0 ${blurSize} ${spreadSize} ${color}`;
         
@@ -204,7 +212,7 @@ function setUpCirclesParameters(){
             0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
             0 0 ${blurSize} ${spreadSize} ${color}`;
-        bottomCircleAnimation.Percent100 = `0 -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
+        bottomCircleAnimation.Percent100 = `${offsetBig} -${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             -${offsetBig} 0px 0 2px ${centerCirclesBackgroundColor},\
             0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
@@ -231,6 +239,7 @@ function setUpTimelineAndBranchesParameters(){
     let blogTopPadding = $(".blog-content").css("padding-top");
     let blogBottomPadding = $(".blog-content").css("padding-bottom");
     let timelineHeight = "-25";
+    let timelineMinHeight = "55vh";
     $(".container.align-hor-left").each(function(index){
         timelineHeight = String(Number(timelineHeight) + $(this).height());
         timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
@@ -245,14 +254,16 @@ function setUpTimelineAndBranchesParameters(){
             + "px";
     $("#timeline").css('top', `calc(1.2rem + ${navbarTotalHeight} + ${navbarMarginBottom})`);
     $("#timeline").css("height", timelineHeight);
-    $("#timeline").css("min-height", "55vh");
-    // $("#timeline-slide").css("height", timelineHeight);
+    $("#timeline").css("min-height", timelineMinHeight);
+    $("#timeline-slide").css("height", timelineHeight);
+    $("#timeline-slide").css("min-height", timelineMinHeight)
     $(".circle-center.bottom").css('top', `calc(${navbarTotalHeight} + ${$("#timeline").css('height')} + ${navbarMarginBottom} + 1.5rem`);
     console.log("timeline height = " + timelineHeight);
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){
     var supportedFlag = $.keyframe.isSupported();
     console.log("window width = " + String($(window).width()));
+
     if (supportedFlag && $(window).width() >= 992) {
         $.keyframe.define([{
             //Setting up circle animations
@@ -328,7 +339,6 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             name: 'slideOut-horizontal-towards-left',
             '0%': {
                 'right': '0',
-                'box-shadow': '0 0 0 0 rgb(10, 10, 10)'
             },
             '100%': {
                 'right': '100%'
@@ -338,7 +348,6 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             name: 'slideOut-horizontal-towards-right',
             '0%': {
                 'left': '0',
-                'box-shadow': '0 0 0 0 rgb(10, 10, 10)'
             },
             '100%': {
                 'left': '100%'
@@ -347,10 +356,13 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             //Setting up timeline animation
             name: 'slideOut-vertical',
             '0%': {
-                'opacity': '0'
+                'opacity': '1',
+                'top': '0'
             },
             '100%': {
-                'opacity': '1'
+                'opacity': '1',
+                'top': '150%'
+                
             }
         }]);
         //Animation duration and delay parameters setup
@@ -374,27 +386,29 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             iterationCount: 1,
             fillMode: 'forwards'
         });
-        circles.bottomCircle.playKeyframe({
-            name: 'bottom-circle-animation',
-            duration: String(centerCirclesAnimationDuration) + 's',
-            delay: String(initialAnimationDelay) + 's',
-            timingFunction: 'ease',
-            iterationCount: 1,
-            fillMode: 'forwards'
-        });
         timelineSlide.playKeyframe({
             name: 'slideOut-vertical',
             duration: String(timelineSlideDuration) + 's',
             delay: String(initialAnimationDelay + centerCirclesAnimationDuration) + 's',
             timingFunction: 'linear',
             iterationCount: 1,
+            fillMode: 'backwards',
+            complete: function(){
+                $("#timeline-slide").css('opacity', '0');
+            }
+        });
+        circles.bottomCircle.playKeyframe({
+            name: 'bottom-circle-animation',
+            duration: String(centerCirclesAnimationDuration) + 's',
+            delay: String(initialAnimationDelay + centerCirclesAnimationDuration + timelineSlideDuration) + 's',
+            timingFunction: 'ease',
+            iterationCount: 1,
             fillMode: 'forwards'
-            // animation: slideOut-vertical 4s linear 1 1.2s forwards; 
         });
         leftbranchSlide.playKeyframe({
             name: 'slideOut-horizontal-towards-left',
             duration: String(branchSlideDuration) + 's',
-            delay: String(initialAnimationDelay + centerCirclesAnimationDuration + timelineSlideDuration) + 's',
+            delay: String(initialAnimationDelay + 2 * centerCirclesAnimationDuration + timelineSlideDuration) + 's',
             timingFunction: 'linear',
             iterationCount: 1,
             fillMode: 'forwards'
@@ -403,7 +417,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
         rightbranchSlide.playKeyframe({
             name: 'slideOut-horizontal-towards-right',
             duration: String(branchSlideDuration) + 's',
-            delay: String(initialAnimationDelay + centerCirclesAnimationDuration + timelineSlideDuration) + 's',
+            delay: String(initialAnimationDelay + 2 * centerCirclesAnimationDuration + timelineSlideDuration) + 's',
             timingFunction: 'linear',
             iterationCount: 1,
             fillMode: 'forwards'
@@ -412,7 +426,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
         circles.leftCircles.playKeyframe({
             name: 'left-branch-circle-animation',
             duration: String(branchCirclesAnimationDuration) + 's',
-            delay: String(initialAnimationDelay + centerCirclesAnimationDuration + timelineSlideDuration + branchSlideDuration) + 's',
+            delay: String(initialAnimationDelay + 2 * centerCirclesAnimationDuration + timelineSlideDuration + branchSlideDuration) + 's',
             timingFunction: 'ease',
             iterationCount: 1,
             fillMode: 'forwards'
@@ -420,7 +434,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
         circles.rightCircles.playKeyframe({
             name: 'right-branch-circle-animation',
             duration: String(branchCirclesAnimationDuration) + 's',
-            delay: String(initialAnimationDelay + centerCirclesAnimationDuration + timelineSlideDuration + branchSlideDuration) + 's',
+            delay: String(initialAnimationDelay + 2 * centerCirclesAnimationDuration + timelineSlideDuration + branchSlideDuration) + 's',
             timingFunction: 'linear',
             iterationCount: 1,
             fillMode: 'forwards'

@@ -26,17 +26,11 @@
 }
 .align-hor-left {
   margin-left: 0;
-  margin-right: 50%;
+  margin-right: 50vw;
 }
 .align-hor-right {
   margin-right: 0;
-  margin-left: 50%;
-}
-.align-hor-left .circle {
-  left: 0;
-}
-.align-hor-right .circle {
-  right: 0;
+  margin-left: 50vw;
 }
 .align-ver-center {
   align-items: center;
@@ -46,45 +40,45 @@
   background-image: -webkit-linear-gradient(
     to left,
     rgb(10, 10, 10),
-    rgb(10, 10, 10) 30%,
-    rgb(60, 60, 60) 35%,
-    rgb(10, 10, 10) 40%,
-    rgb(10, 10, 10) 60%,
-    rgb(60, 60, 60) 65%,
-    rgb(10, 10, 10) 70%,
+    rgb(10, 10, 10) 35%,
+    rgb(60, 60, 60) 40%,
+    rgb(10, 10, 10) 45%,
+    rgb(10, 10, 10) 55%,
+    rgb(60, 60, 60) 60%,
+    rgb(10, 10, 10) 65%,
     rgb(10, 10, 10) 100%
   );
   background-image: -moz-linear-gradient(
     to left,
     rgb(10, 10, 10),
-    rgb(10, 10, 10) 30%,
-    rgb(60, 60, 60) 35%,
-    rgb(10, 10, 10) 40%,
-    rgb(10, 10, 10) 60%,
-    rgb(60, 60, 60) 65%,
-    rgb(10, 10, 10) 70%,
+    rgb(10, 10, 10) 35%,
+    rgb(60, 60, 60) 40%,
+    rgb(10, 10, 10) 45%,
+    rgb(10, 10, 10) 55%,
+    rgb(60, 60, 60) 60%,
+    rgb(10, 10, 10) 65%,
     rgb(10, 10, 10) 100%
   );
   background-image: -o-linear-gradient(
     to left,
     rgb(10, 10, 10),
-    rgb(10, 10, 10) 30%,
-    rgb(60, 60, 60) 35%,
-    rgb(10, 10, 10) 40%,
-    rgb(10, 10, 10) 60%,
-    rgb(60, 60, 60) 65%,
-    rgb(10, 10, 10) 70%,
+    rgb(10, 10, 10) 35%,
+    rgb(60, 60, 60) 40%,
+    rgb(10, 10, 10) 45%,
+    rgb(10, 10, 10) 55%,
+    rgb(60, 60, 60) 60%,
+    rgb(10, 10, 10) 65%,
     rgb(10, 10, 10) 100%
   );
   background-image: linear-gradient(
     to left,
     rgb(10, 10, 10),
-    rgb(10, 10, 10) 30%,
-    rgb(60, 60, 60) 35%,
-    rgb(10, 10, 10) 40%,
-    rgb(10, 10, 10) 60%,
-    rgb(60, 60, 60) 65%,
-    rgb(10, 10, 10) 70%,
+    rgb(10, 10, 10) 35%,
+    rgb(60, 60, 60) 40%,
+    rgb(10, 10, 10) 45%,
+    rgb(10, 10, 10) 55%,
+    rgb(60, 60, 60) 60%,
+    rgb(10, 10, 10) 65%,
     rgb(10, 10, 10) 100%
   );
   min-height: 80vh;
@@ -109,9 +103,7 @@ body {
   height: 0.3rem;
   background: aqua;
   position: relative;
-  // bottom: 3px;
   top: 50%;
-  left: 1vw;
   z-index: -1;
   border-radius: 15%;
 }
@@ -129,10 +121,8 @@ body {
 .circle {
   position: relative;
   top: 2px;
-  left: 1.8vw;
   right: 0;
   display: inline-flex;
-  overflow: hidden;
   width: 12px;
   height: 12px;
   @extend %circular;
@@ -182,8 +172,8 @@ body {
   animation: fade-in-from-right 0.5s 0.5s ease-in-out 1 forwards;
 }
 footer {
-  margin-top: -50px;
   position: relative;
+  top: 1.3rem;
   z-index: +1000;
 }
 .h4 {
@@ -205,6 +195,12 @@ footer {
 .navbar-light .text-darkgrey {
   color: darkgrey;
 }
+// .align-hor-left .opacity-control, .align-hor-right .opacity-control{
+//   left: auto;
+//   right: auto;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
 #profile-description {
   line-height: 1.5;
 }
@@ -212,10 +208,6 @@ footer {
   width: 30%;
   height: 30%;
   border-radius: 100%;
-}
-.row > * {
-  padding-right: calc(var(--bs-gutter-x) * 0.3);
-  padding-left: calc(var(--bs-gutter-x) * 0.3);
 }
 .top {
   top: 5.7rem;
@@ -239,19 +231,15 @@ textarea{
 .trunc-width {
   max-width: 12rem;
 }
-$timeline-length: 75vh;
 $timeline-width: 0.1rem;
 #timeline {
   display: inline-block;
   width: $timeline-width;
   background-color: aqua;
   box-shadow: 0 0 0.1rem 0.2rem aqua;
-  // min-height: $timeline-length;
   @extend %absolute-center;
-  top: 17.5%;
   z-index: +1000;
   border-radius: 0.5%;
-  opacity: 0;
 }
 #timeline-slide {
   display: inline-block;
@@ -260,11 +248,8 @@ $timeline-width: 0.1rem;
   top: 0;
   left: 0;
   width: $timeline-width;
-  // height: $timeline-length;
   background: rgb(10, 10, 10);
-  // animation: slideOut-vertical 4s linear 1 1.2s forwards;
-  box-shadow: 0 0 0.2rem 0.3rem rgb(10, 10, 10);
-  overflow: clip;
+  box-shadow: 0 0 0.2rem 0.35rem rgb(10, 10, 10);
 }
 @keyframes fade-in {
   0%{
@@ -325,8 +310,8 @@ $fade-in-distance: 30vw;
   }
   .align-hor-left,
   .align-hor-right {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 50vw;
+    margin-right: 50vw;
   }
   .align-hor-left .entry-text{
     left: 0;
