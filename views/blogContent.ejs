@@ -14,7 +14,7 @@
                             <%-journalEntries[index].content%>
                         </p>
                         <form action="/entry" method="post">
-                            <button type="submit" name="button" value="<%=index%>" class="btn btn-lg btn-outline-light">
+                            <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-light">
                                 Read More
                             </button>
                         </form>
@@ -63,7 +63,7 @@
                             <%-journalEntries[index].content%>
                         </p>
                         <form action="/entry" method="post">
-                            <button type="submit" name="button" value="<%=index%>" class="btn btn-lg btn-outline-light">
+                            <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-light">
                                 Read More
                             </button>
                         </form>
