@@ -7,7 +7,7 @@
 <div class="blog-content">
     <%for(let index = 0; index < journalEntries.length; index++){ %>
         <%if(index % 2 == 0 || index == 0){%>
-            <div class="container align-hor-left mb-4">
+            <div class="container align-hor-left mt-4 mb-4">
                     <div class="entry-text">
                         <h3 class="h3"><%-journalEntries[index].title%></h3>
                         <p class="text-truncate trunc-width entry-content h6">
@@ -37,9 +37,10 @@
                         <!-- </div> -->
                     </div>
             </div>
+            <br><br><br><br>
         <%}%>
         <%if(index % 2 == 1){ %>
-            <div class="container align-hor-right mb-4">
+            <div class="container align-hor-right mt-4 mb-4">
                     <div class="fit align-ver-center opacity-control">
                         <!-- <div class="row"> -->
                             <!-- <div class="opacity-control"> -->
@@ -69,6 +70,7 @@
                         </form>
                     </div>
             </div> 
+            <br><br><br><br>
         <%}%>
     <%}%>
 </div>

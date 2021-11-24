@@ -239,31 +239,49 @@ function setUpCirclesParameters(){
 }
 function setUpTimelineParameters(){
     //calculate timeline and the bottom circle's vertical position
-    let navbarTotalHeight = String($(".navbar").css("height"));
-    let navbarMarginBottom = String($(".navbar").css("margin-bottom"));
-    let blogTopPadding = $(".blog-content").css("padding-top");
-    let blogBottomPadding = $(".blog-content").css("padding-bottom");
-    let timelineHeight = "-25";
+    let navbarHeight = convertFromPixels($(".navbar").css("height"));
+    let navbarMarginBottom = convertFromPixels($(".navbar").css("margin-bottom"));
+    let navbarPaddingTop = convertFromPixels($(".navbar").css("padding-top"));
+    let navbarPaddingBottom = convertFromPixels($(".navbar").css("padding-bottom"));
+    let footerHeight = convertFromPixels($("footer").css("height"));
+    let footerMarginTop = convertFromPixels($("footer").css("margin-top"));
+    // let blogTopPadding = convertFromPixels($(".blog-content").css("padding-top"));
+    // let blogBottomPadding = convertFromPixels($(".blog-content").css("padding-bottom"));
+    // let timelineHeight = "-25";
+    let timelineHeight = $(document).height() - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
+    console.log("timeline: ", timelineHeight);
+    let timelineHeightOffset = String(2 * Number(footerMarginTop));
+    console.log("parameters: ", navbarPaddingBottom, navbarHeight);
+    console.log("offset: ", timelineHeightOffset);
     let timelineMinHeight = "55vh";
-    $(".container.align-hor-left").each(function(index){
-        timelineHeight = String(Number(timelineHeight) + $(this).height());
-        timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
-    });
-    $(".container.align-hor-right").each(function(index){
-        timelineHeight = String(Number(timelineHeight) + $(this).height());
-        timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
-    });
-    timelineHeight = String(Number(timelineHeight) 
-            + Number(blogTopPadding.substring(0, blogTopPadding.length-2)) 
-            + Number(blogBottomPadding.substring(0, blogBottomPadding.length-2))) 
-            + "px";
-    $("#timeline").css('top', `calc(1.2rem + ${navbarTotalHeight} + ${navbarMarginBottom})`);
-    $("#timeline").css("height", timelineHeight);
-    $("#timeline").css("min-height", timelineMinHeight);
-    $("#timeline-slide").css("height", timelineHeight);
-    $("#timeline-slide").css("min-height", timelineMinHeight)
-    $(".circle-center.bottom").css('top', `calc(${navbarTotalHeight} + ${$("#timeline").css('height')} + ${navbarMarginBottom} + 1.5rem`);
-    console.log("timeline height = " + timelineHeight);
+    // $(".container.align-hor-left").each(function(index){
+    //     timelineHeight = String(Number(timelineHeight) + $(this).height());
+    //     timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
+    // });
+    // $(".container.align-hor-right").each(function(index){
+    //     timelineHeight = String(Number(timelineHeight) + $(this).height());
+    //     timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
+    // });
+
+    // timelineHeight = String(Number(timelineHeight) 
+    //         + Number(blogTopPadding.substring(0, blogTopPadding.length-2)) 
+    //         + Number(blogBottomPadding.substring(0, blogBottomPadding.length-2))) 
+    //         + "px";
+    $("#timeline").css('top', `calc(${navbarPaddingTop}px + ${navbarPaddingBottom}px + ${navbarHeight}px + ${navbarMarginBottom}px + 7px)`);
+    $("#timeline").css("height", `calc(${timelineHeight}px - ${timelineHeightOffset}px)`);
+    $("#timeline-slide").css("height", "100%");
+    console.log("Current:", $("#timeline").css("height"));
+    console.log(`${timelineHeight} - ${timelineHeightOffset}px`);
+    $("#timeline").css("min-height", `${timelineMinHeight}px`);
+    $("#timeline-slide").css("height", `calc(${timelineHeight})`);
+    $("#timeline-slide").css("min-height", `${timelineMinHeight}px`)
+    $(".circle-center.bottom").css('top', `calc(${navbarHeight}px + ${timelineHeight}px + ${navbarMarginBottom}px + ${navbarPaddingTop}px + ${navbarPaddingBottom}px - ${timelineHeightOffset}px + 9px`);
+}
+function convertFromPixels(string){
+    if(string[string.length-1] == "x"){
+        return string.substring(0, string.length-2);
+    }
+    return string;
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){
     var supportedFlag = $.keyframe.isSupported();
