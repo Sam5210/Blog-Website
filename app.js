@@ -2,8 +2,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const sharp = require("sharp");
+// const sharp = require("sharp");
+// const picsee = require("picsee");
+const sizeOf = require("buffer-image-size");
 const multer = require("multer");
+const sharp = require("sharp");
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
@@ -18,7 +21,6 @@ const entrySchema = new mongoose.Schema ({
     img:{
         data: [Buffer],
         contentType: [String],
-        size: Number
     }
 });
 const Entry = mongoose.model("Entry", entrySchema);
@@ -43,7 +45,11 @@ app.post("/entry", function(request, response){
             console.log(error);
         }
         else{
-            response.render("website", {page: "entry", entry: entry});
+            response.render("website", {
+                page: "entry", 
+                journalEntries: [],
+                entry: entry
+            });
         }
     });
 })
@@ -61,19 +67,37 @@ app.post("/", upload.array("img", maxImageCount),function(request, response){
         title: request.body.title, 
         content: request.body.content
     });
-    let totalFileSize = 0;
-    request.files.forEach(function(file){
-        entry.img.data.push(file.buffer);
-        entry.img.contentType.push(file.mimetype);
-        totalFileSize += file.size;
-    });
-    entry.size = totalFileSize;
-    console.log(entry.size);
-    // let save = async function(){
-    //     await entry.save();
-    //     response.redirect("/");
-    // }
-    // save();
+    let save = async function(){
+        // const maxImageWidth = 1020;
+        const maxImageWidth = 400;
+        await request.files.forEach(function(file){
+            entry.img.contentType.push(file.mimetype);
+            let fileDimensions = sizeOf(file.buffer);
+            let Resize = async function(){
+                if(fileDimensions.width > maxImageWidth){
+                    let aspectRatio = fileDimensions.width / fileDimensions.height;
+                    let newWidth = maxImageWidth;
+                    let newHeight = Math.round(maxImageWidth / aspectRatio);
+                    await sharp(file.buffer)
+                            .resize(newWidth, newHeight)
+                            .toBuffer(function(error, data, info){
+                                if(error){console.log(error);}
+                                else{
+                                    entry.img.data.push(Buffer.from(data.buffer));
+                                    entry.save();
+                                }
+                            });
+                }
+                else{
+                    entry.img.data.push(file.buffer);
+                    entry.save();
+                }
+            }
+            Resize();
+        });
+        response.redirect("/");
+    }
+    save();
 });
 app.get("/", function(request, response){
     let page = "home";
