@@ -11,7 +11,7 @@
     <!-- jQuery keyframes-->
     <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
     <script type="module" src="/scripts/jquery.keyframes.js"></script>
-
+    <script type="module" src="/scripts/cropper.js"></script>
     <!-- Font Awesome-->
     <script src="https://kit.fontawesome.com/2bd9cd6d32.js" crossorigin="anonymous"></script>
     
@@ -19,7 +19,12 @@
     <% if(page == "home"){ %>
         <script src="animations.js"></script>
     <% } %>
-
+    <% if(page == "compose"){%>
+        <script src="cropEntryIconImage.js"></script>
+    <%}%>
+    <% if(page == "entry"){ %>
+        <script src="entryImage.js"></script>
+    <%}%>
     <!-- Cropperjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 </body>

@@ -7,20 +7,56 @@ $(document).ready(function(){
 });
 function main(){
     if($(window).width() >= 992){
+        setRightEntryFormat("large");
         playAllAnimations();
     }
     else if($(window).width() < 992 && $(window).width() >= 562){
-        playEntryAnimations(0, "20%");
+        setRightEntryFormat("medium");
+        playAllAnimations();
+        //playEntryAnimations(0, "20%");
     }
     else if($(window).width() < 562){
-        playEntryAnimations(0, "0");
+        setRightEntryFormat("small");
+        playAllAnimations();
+        //playEntryAnimations(0, "0");
+        
     }
+    setEntryIconsBorders();
+}
+function setEntryIconsBorders(){
+    let entryIcons = $(".entry-icon");
+    entryIcons.each(function(){
+        if($(this).attr("src") != ""){
+            if(!($(this).hasClass("entry-icon-styles"))){
+                $(this).addClass("entry-icon-styles");
+            }
+        }
+        else{
+            if($(this).hasClass("entry-icon-styles")){
+                $(this).removeClass("entry-icon-styles");
+            }
+        }
+    });
+}
+
+let rightEntryIcon = $(".right-entry-icon").html();
+let rightEntryText = $(".right-entry-text").html();
+function setRightEntryFormat(windowSize){
+    let rightEntry = $(".align-hor-right .row");
+    //console.log("Right entry inner html: " + rightEntry.html());
+    if(windowSize == "small"){
+        rightEntry.html(rightEntryText + rightEntryIcon);
+    }
+    else{
+        rightEntry.html(rightEntryIcon + rightEntryText);
+    }
+
 }
 function playAllAnimations() {
     //Circle animation parameters
     let circles = setUpCirclesParameters();
 
-    //timeline and branch total parameters
+
     //get timeline
     let timeline = $("#timeline");
     let timelineSlide = $("#timeline-slide");
@@ -32,18 +68,19 @@ function playAllAnimations() {
     //Setting up animations
     let totalAnimationDuration = setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide);
     if(totalAnimationDuration != 0)
-        playEntryAnimations(totalAnimationDuration, "15%");
+        playEntryAnimations(totalAnimationDuration, "0");
     else
         console.log("Warning: animation duration: 0");
 }
 
 function playEntryAnimations(initialAnimationDelay, textOffset){
-    let images = $(".img-thumbnail");
+    let images = $(".entry-icon");
     let leftText = $(".align-hor-left .entry-text");
     let rightText = $(".align-hor-right .entry-text");
     let leftTextWidth = leftText.css('width');
+    console.log("left text width: " + leftTextWidth);
     let rightTextWidth = rightText.css('width');
-    console.log("righttextwidth = " + rightTextWidth);
+    console.log("right text width = " + rightTextWidth);
     images.css('opacity', '0');
     leftText.css('opacity', '0');
     rightText.css('opacity', '0');
@@ -245,28 +282,13 @@ function setUpTimelineParameters(){
     let navbarPaddingBottom = convertFromPixels($(".navbar").css("padding-bottom"));
     let footerHeight = convertFromPixels($("footer").css("height"));
     let footerMarginTop = convertFromPixels($("footer").css("margin-top"));
-    // let blogTopPadding = convertFromPixels($(".blog-content").css("padding-top"));
-    // let blogBottomPadding = convertFromPixels($(".blog-content").css("padding-bottom"));
-    // let timelineHeight = "-25";
+
     let timelineHeight = $(document).height() - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
     console.log("timeline: ", timelineHeight);
     let timelineHeightOffset = String(2 * Number(footerMarginTop));
     console.log("parameters: ", navbarPaddingBottom, navbarHeight);
     console.log("offset: ", timelineHeightOffset);
     let timelineMinHeight = "55vh";
-    // $(".container.align-hor-left").each(function(index){
-    //     timelineHeight = String(Number(timelineHeight) + $(this).height());
-    //     timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
-    // });
-    // $(".container.align-hor-right").each(function(index){
-    //     timelineHeight = String(Number(timelineHeight) + $(this).height());
-    //     timelineHeight = String(Number(timelineHeight) + Number($(this).css('margin-bottom').substring(0, $(this).css('margin-bottom').length-2)));
-    // });
-
-    // timelineHeight = String(Number(timelineHeight) 
-    //         + Number(blogTopPadding.substring(0, blogTopPadding.length-2)) 
-    //         + Number(blogBottomPadding.substring(0, blogBottomPadding.length-2))) 
-    //         + "px";
     $("#timeline").css('top', `calc(${navbarPaddingTop}px + ${navbarPaddingBottom}px + ${navbarHeight}px + ${navbarMarginBottom}px + 7px)`);
     $("#timeline").css("height", `calc(${timelineHeight}px - ${timelineHeightOffset}px)`);
     $("#timeline-slide").css("height", "100%");
@@ -287,7 +309,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
     var supportedFlag = $.keyframe.isSupported();
     console.log("window width = " + String($(window).width()));
 
-    if (supportedFlag && $(window).width() >= 992) {
+    if (supportedFlag) {
         $.keyframe.define([{
             //Setting up circle animations
             name: 'left-branch-circle-animation',
@@ -389,13 +411,13 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             }
         }]);
         //Animation duration and delay parameters setup
-        let initialAnimationDelay = 0.5;
+        let initialAnimationDelay = 1;
         let centerCirclesAnimationDuration = 0.35;
         let timelineSlideDuration = 0.5;
         let branchSlideDuration = 0.5;
         let branchCirclesAnimationDuration = 0.3;
         let totalAnimationDuration = initialAnimationDelay;
-        totalAnimationDuration += centerCirclesAnimationDuration;
+        totalAnimationDuration += 2 * centerCirclesAnimationDuration;
         totalAnimationDuration += timelineSlideDuration;
         totalAnimationDuration += branchSlideDuration;
         totalAnimationDuration += branchCirclesAnimationDuration;

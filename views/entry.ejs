@@ -1,10 +1,14 @@
 <%if(page == "entry"){%>
     <div class="container mb-4 text-center content">
         <h1 class="h1 mb-4"><%-entry.title%></h1>
-        <p class="h4 mb-4"><%-entry.content%></p>
-        <% for(let index = 0; index < entry.img.data.length; index++){ %>
-            <img class="mt-4 mb-4" alt="entry image"
-                src="data:<%=entry.img.contentType[index]%>;base64,<%=Buffer.from(entry.img.data[index]).toString("base64")%>">
+        <p class="h5 mb-4"><%-entry.content%></p>
+        <% if(entry.img.data.length > 0){ %>
+            <div class="container mt-2 mb-2">
+            <% for(let index = 0; index < entry.img.data.length; index++){ %>
+                <img class="mt-4 mb-4 entry-image"
+                    src="<%=entry.img.data[index]%>">
+            <% } %>
+            </div>
         <% } %>
     </div>
 <%}%>

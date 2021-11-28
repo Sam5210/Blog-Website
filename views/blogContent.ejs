@@ -1,76 +1,64 @@
 <%if(page == "home"){ %>
-<div class="opacity-control">
+<div>
     <div class="circle-center top"></div>
     <div id="timeline"><div id="timeline-slide"></div></div>
     <div class="circle-center bottom"></div>
 </div>
-<div class="blog-content">
+<div class="blog-content p-4">
     <%for(let index = 0; index < journalEntries.length; index++){ %>
         <%if(index % 2 == 0 || index == 0){%>
             <div class="container align-hor-left mt-4 mb-4">
-                    <div class="entry-text">
-                        <h3 class="h3"><%-journalEntries[index].title%></h3>
+                <div class="row">
+                    <div class="col-lg-6 entry-text">
+                        <h3 class="h3 text-truncate trunc-width"><%-journalEntries[index].title%></h3>
                         <p class="text-truncate trunc-width entry-content h6">
                             <%-journalEntries[index].content%>
                         </p>
                         <form action="/entry" method="post">
-                            <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-light">
+                            <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-info">
                                 Read More
                             </button>
                         </form>
                     </div>
+                    <div class="col-lg-6 d-inline-block">
+                        <img class="entry-icon" src="<%=journalEntries[index].entryIcon.base64String%>">
+                    </div>
+                </div>
                     <div class="fit align-ver-center opacity-control">
-                        <!-- <div class="row"> -->
-                            <!-- <div class="col-lg-7">
-                                console.log(journalEntries[index])
-                                if(journalEntries[index].img == undefined){
-                                    <img class="img-thumbnail mb-4" src="images/enter.png" alt="meditation img" >
-                                } 
-                                else{ 
-                                    <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
-                                } 
-                            </div> -->
-                            <!-- <div class="opacity-control"> -->
-                                <div class="circle"></div>
-                                <div class="branch"><div class="branch-slide"></div></div>
-                            <!-- </div> -->
-                        <!-- </div> -->
+                        <div class="circle"></div>
+                        <div class="branch"><div class="branch-slide"></div></div>       
                     </div>
             </div>
-            <br><br><br><br>
+            <br><br>
         <%}%>
         <%if(index % 2 == 1){ %>
-            <div class="container align-hor-right mt-4 mb-4">
+            <div class="container align-hor-right mb-4">
                     <div class="fit align-ver-center opacity-control">
-                        <!-- <div class="row"> -->
-                            <!-- <div class="opacity-control"> -->
-                                <div class="branch"><div class="branch-slide"></div></div>
-                                <div class="circle"></div>
-                            <!-- </div> -->
-                            <!-- <div class="col-lg-7">
-                                console.log(journalEntries[index])
-                                if(journalEntries[index].img == undefined){
-                                    <img class="img-thumbnail mb-4" src="images/enter.png" alt="meditation img" >
-                                }
-                                else{ 
-                                    <img class="img-thumbnail mb-4" src="journalEntries[index].img.path" alt="meditation img" >
-                                 }
-                            </div>
-                        </div> -->
+                        <div class="branch"><div class="branch-slide"></div></div>
+                        <div class="circle"></div>
                     </div>
-                    <div class="entry-text">
-                        <h3 class="h3"><%-journalEntries[index].title%></h3>
-                        <p class="text-truncate trunc-width entry-content h6">
-                            <%-journalEntries[index].content%>
-                        </p>
-                        <form action="/entry" method="post">
-                            <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-light">
-                                Read More
-                            </button>
-                        </form>
+                    <div class="row">
+                        <div class="right-entry-icon mt-4">
+                            <div class="col-lg-6">
+                                <img class="entry-icon" src="<%=journalEntries[index].entryIcon.base64String%>">
+                            </div>
+                        </div>
+                        <div class="right-entry-text">
+                            <div class="col-lg-6 entry-text mt-4">
+                                <h3 class="h3 text-truncate trunc-width"><%-journalEntries[index].title%></h3>
+                                <p class="text-truncate trunc-width entry-content h6">
+                                    <%-journalEntries[index].content%>
+                                </p>
+                                <form action="/entry" method="post">
+                                    <button type="submit" name="_id" value="<%=journalEntries[index]._id%>" class="btn btn-lg btn-outline-info">
+                                        Read More
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
             </div> 
-            <br><br><br><br>
+            <br><br>
         <%}%>
     <%}%>
 </div>
