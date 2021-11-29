@@ -405,6 +405,10 @@ textarea {
     width: 0;
   }
 
+  #profile-description {
+    font-size: 1.2rem;
+  }
+
   #timeline {
     border: none;
   }

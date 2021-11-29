@@ -79,7 +79,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
         entryIcon: request.body.entryIconSrc
     });
     let save = async function(){
-        const maxImageWidth = 600;
+        const maxImageWidth = 450;
         if(request.files.img){
             await request.files.img.forEach(function(file){
                 let fileDimensions = sizeOf(file.buffer);
@@ -98,7 +98,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                                             file.mimetype +
                                             ";base64," +
                                             (Buffer.from(data.buffer).toString("base64")));
-                                        await entry.save();
+                                        entry.markModified("img");
                                         
                                     }
                                 });
@@ -109,7 +109,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                             file.mimetype +
                             ";base64," +
                             (Buffer.from(file.buffer).toString("base64")));
-                        await entry.save();
+                        entry.markModified("img");
                     }
                 }
                 Resize();
@@ -134,7 +134,6 @@ app.get("/", function(request, response){
                 response.render("website", {page:page, journalEntries: defaultEntries});
             }
             else{
-                console.log(entries);
                 response.render("website", {page:"home", journalEntries: entries});
             }
 

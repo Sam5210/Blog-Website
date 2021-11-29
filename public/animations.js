@@ -3,6 +3,7 @@ $(document).ready(function(){
         setUpTimelineParameters();
         main();
     });
+    setUpTimelineParameters();
     main();
 });
 function main(){
@@ -294,9 +295,13 @@ function setUpTimelineParameters(){
     let navbarPaddingBottom = convertFromPixels($(".navbar").css("padding-bottom"));
     let footerHeight = convertFromPixels($("footer").css("height"));
     let footerMarginTop = convertFromPixels($("footer").css("margin-top"));
+    let timelineHeightAddition = 35;
 
+    if($(window).width() < 992){
+        timelineHeightAddition = 75;
+    }
     let timelineHeight = $(document).height() - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
-    let timelineHeightOffset = String((2 * Number(footerMarginTop)) - 35);
+    let timelineHeightOffset = String((2 * Number(footerMarginTop)) - timelineHeightAddition);
     let timelineMinHeight = "55vh";
     $("#timeline").css('top', `calc(${navbarPaddingTop}px + ${navbarPaddingBottom}px + ${navbarHeight}px + ${navbarMarginBottom}px + 7px)`);
     $("#timeline").css("height", `calc(${timelineHeight}px - ${timelineHeightOffset}px)`);
