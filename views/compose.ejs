@@ -1,5 +1,5 @@
 <% if(page == "compose"){ %>
-<div class="container content">
+<div class="container compose-page-content">
     <h1 class="h1">Compose New Entry</h1>
     <form class="mb-4" action="/" method="post" enctype="multipart/form-data">
         <div class="form-group mb-4">
@@ -23,14 +23,14 @@
                 <button type="button" id="save-entry-icon-button" class="btn btn-md btn-outline-light mt-4 hide">Save entry icon</button>
             </div>
         </div>
-        <%for(let index = 0; index < maxImageCount; index++){%>
+        <!-- for(let index = 0; index < maxImageCount; index++){ -->
             <div class="form-group mb-4 mx-auto text-center">
                 <label for="img">
                 <span class="btn btn-md btn-light">Upload image for this entry</span>
                 </label>
                 <input type="file" id="img" name="img" accept=".jpg, .png">
             </div>
-        <%}%>
+        <!-- } -->
         <div class="d-grid p-3">
             <button type="submit" id="entry-submit-button" class="btn btn-lg btn-outline-light">Submit</button>
         </div>

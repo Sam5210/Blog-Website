@@ -7,7 +7,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-$timeline-left-offset: 0.3vw;
+$timeline-left-offset: 0.5vw;
 %absolute-center {
   position: absolute;
   left: $timeline-left-offset;
@@ -151,8 +151,9 @@ $circle-width: 12px;
   max-width: 75%;
 }
 .blog-content,
-.content {
-  min-height: 60%;
+.entry-page-content,
+.compose-success-content {
+  min-height: 60vh;
 }
 .entry-content{
   max-height: 4.5rem;

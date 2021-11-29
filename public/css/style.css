@@ -1,6 +1,6 @@
 .circle-center, #timeline {
   position: absolute;
-  left: 0.3vw;
+  left: 0.5vw;
   right: 0;
   margin-left: auto;
   margin-right: auto;
@@ -120,8 +120,9 @@ body {
 }
 
 .blog-content,
-.content {
-  min-height: 60%;
+.entry-page-content,
+.compose-success-content {
+  min-height: 60vh;
 }
 
 .entry-content {

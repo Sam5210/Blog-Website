@@ -1,11 +1,11 @@
 <%if(page == "entry"){%>
-    <div class="container mb-4 text-center content">
+    <div class="container mb-4 text-center entry-page-content">
         <h1 class="h1 mb-4"><%-entry.title%></h1>
         <p class="h5 mb-4"><%-entry.content%></p>
         <% if(entry.img.data.length > 0){ %>
             <div class="container mt-2 mb-2">
             <% for(let index = 0; index < entry.img.data.length; index++){ %>
-                <img class="mt-4 mb-4 entry-image"
+                <img class="mt-4 mb-4 entry-image entry-image-styles"
                     src="<%=entry.img.data[index]%>">
             <% } %>
             </div>

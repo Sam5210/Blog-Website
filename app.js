@@ -7,8 +7,9 @@ const mongoose = require("mongoose");
 const sizeOf = require("buffer-image-size");
 const multer = require("multer");
 const sharp = require("sharp");
+const { response } = require("express");
 const storage = multer.memoryStorage();
-const upload = multer({storage: storage, limits: {fieldSize: 10 * 1024 * 1024}});
+const upload = multer({storage: storage, limits: {fieldSize: 1.5 * 1024 * 1024}});
 
 //Connect Mongoose
 mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true});
@@ -18,9 +19,7 @@ mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blo
 const entrySchema = new mongoose.Schema ({
     title: String,
     content: String,
-    entryIcon:{
-        base64String: String,
-    },
+    entryIcon: String,
     img:{
         data: [String],
     }
@@ -46,6 +45,9 @@ let uploadFields = [
 ];
 
 //App posts and gets
+app.get("/about", function(request, response){
+    response.render("website", {page: "about"});
+});
 app.post("/entry", function(request, response){
     Entry.findOne({_id: request.body._id}, function(error, entry){
         if(error){
@@ -64,6 +66,9 @@ app.post("/entry", function(request, response){
 app.get("/compose", function(request, response){
     response.render("website", {page:"compose", journalEntries : [{title: "none", content: "none"}], maxImageCount: maxImageCount});
 });
+app.get("/composeSuccess", function(request, response){
+    response.render("website", {page: "composeSuccess"});
+});
 app.post("/", upload.fields(uploadFields),function(request, response){
     // const imageCount = request.body.maxImageCount;
     // let content = request.body.content; content = content.replace(/\r\n|\r|\n/g,"<br/>");
@@ -72,9 +77,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
     let entry = new Entry ({
         title: request.body.title, 
         content: request.body.content,
-        entryIcon: {
-            base64String: request.body.entryIconSrc,
-        },
+        entryIcon: request.body.entryIconSrc
     });
     let save = async function(){
         const maxImageWidth = 400;
@@ -88,18 +91,17 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                         let newHeight = Math.round(maxImageWidth / aspectRatio);
                         await sharp(file.buffer)
                                 .resize(newWidth, newHeight)
-                                .toBuffer(function(error, data, info){
+                                .toBuffer(async function(error, data, info){
                                     if(error){console.log(error);}
                                     else{
                                         entry.img.data.push(
                                             "data:" + 
                                             file.mimetype +
                                             ";base64," +
-                                            (Buffer.from(data.buffer).toString("base64"))
-                                            );
+                                            (Buffer.from(data.buffer).toString("base64")));
+                                        await entry.save();
                                         console.log("Resized image buffer info: ");
                                         console.log(info);
-                                        entry.save();
                                         
                                     }
                                 });
@@ -110,24 +112,22 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                             file.mimetype +
                             ";base64," +
                             (Buffer.from(file.buffer).toString("base64")));
-                        entry.save();
+                        await entry.save();
                     }
                 }
                 Resize();
             });
         }
-        else{
-            entry.save();
-        }
-        response.redirect("/");
+        await entry.save();
+        response.redirect("/composeSuccess");
     }
     save();
 });
 app.get("/", function(request, response){
     let page = "home";
-    if(Object.keys(request.query).length !== 0){
-        page = request.query.page;
-    }
+    // if(Object.keys(request.query).length !== 0){
+    //     page = request.query.page;
+    // }
     Entry.find({}, function(error, entries){
         if(error){
             console.log(error);
@@ -138,7 +138,7 @@ app.get("/", function(request, response){
             }
             else{
                 console.log(entries);
-                response.render("website", {page:page, journalEntries: entries});
+                response.render("website", {page:"home", journalEntries: entries});
             }
 
         }
