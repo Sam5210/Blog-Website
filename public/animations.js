@@ -9,16 +9,28 @@ function main(){
     if($(window).width() >= 992){
         setRightEntryFormat("large");
         playAllAnimations();
+        if(!($(".blog-content").hasClass("p-4")))
+            $(".blog-content").addClass("p-4");
+        if(!($(".entry-text .h3").hasClass("text-truncate"))){
+            $(".entry-text .h3").addClass("text-truncate");
+            $(".entry-text .h3").addClass("trunc-width");
+        }
     }
     else if($(window).width() < 992 && $(window).width() >= 562){
         setRightEntryFormat("medium");
         playAllAnimations();
         //playEntryAnimations(0, "20%");
+        $(".blog-content").removeClass("p-4");
+        $(".entry-text .h3").removeClass("text-truncate");
+        $(".entry-text .h3").removeClass("trunc-width");
     }
     else if($(window).width() < 562){
         setRightEntryFormat("small");
         playAllAnimations();
         //playEntryAnimations(0, "0");
+        $(".blog-content").removeClass("p-4");
+        $(".entry-text .h3").removeClass("text-truncate");
+        $(".entry-text .h3").removeClass("trunc-width");
         
     }
     setEntryIconsBorders();
@@ -284,16 +296,11 @@ function setUpTimelineParameters(){
     let footerMarginTop = convertFromPixels($("footer").css("margin-top"));
 
     let timelineHeight = $(document).height() - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
-    console.log("timeline: ", timelineHeight);
-    let timelineHeightOffset = String(2 * Number(footerMarginTop));
-    console.log("parameters: ", navbarPaddingBottom, navbarHeight);
-    console.log("offset: ", timelineHeightOffset);
+    let timelineHeightOffset = String((2 * Number(footerMarginTop)) - 35);
     let timelineMinHeight = "55vh";
     $("#timeline").css('top', `calc(${navbarPaddingTop}px + ${navbarPaddingBottom}px + ${navbarHeight}px + ${navbarMarginBottom}px + 7px)`);
     $("#timeline").css("height", `calc(${timelineHeight}px - ${timelineHeightOffset}px)`);
     $("#timeline-slide").css("height", "100%");
-    console.log("Current:", $("#timeline").css("height"));
-    console.log(`${timelineHeight} - ${timelineHeightOffset}px`);
     $("#timeline").css("min-height", `${timelineMinHeight}px`);
     $("#timeline-slide").css("height", `calc(${timelineHeight})`);
     $("#timeline-slide").css("min-height", `${timelineMinHeight}px`)
@@ -307,7 +314,6 @@ function convertFromPixels(string){
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){
     var supportedFlag = $.keyframe.isSupported();
-    console.log("window width = " + String($(window).width()));
 
     if (supportedFlag) {
         $.keyframe.define([{
@@ -411,7 +417,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             }
         }]);
         //Animation duration and delay parameters setup
-        let initialAnimationDelay = 1;
+        let initialAnimationDelay = 0.5;
         let centerCirclesAnimationDuration = 0.35;
         let timelineSlideDuration = 0.5;
         let branchSlideDuration = 0.5;

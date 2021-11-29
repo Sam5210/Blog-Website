@@ -12,8 +12,8 @@ const storage = multer.memoryStorage();
 const upload = multer({storage: storage, limits: {fieldSize: 1.5 * 1024 * 1024}});
 
 //Connect Mongoose
-mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true});
-// mongoose.connect("mongodb://localhost:27017/Blog", {useNewUrlParser: true});
+// mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/Blog", {useNewUrlParser: true});
 
 //Entry schema setup
 const entrySchema = new mongoose.Schema ({
@@ -72,15 +72,14 @@ app.get("/composeSuccess", function(request, response){
 app.post("/", upload.fields(uploadFields),function(request, response){
     // const imageCount = request.body.maxImageCount;
     // let content = request.body.content; content = content.replace(/\r\n|\r|\n/g,"<br/>");
-    console.log(request.body);
-    console.log(request.files);
+
     let entry = new Entry ({
         title: request.body.title, 
         content: request.body.content,
         entryIcon: request.body.entryIconSrc
     });
     let save = async function(){
-        const maxImageWidth = 400;
+        const maxImageWidth = 600;
         if(request.files.img){
             await request.files.img.forEach(function(file){
                 let fileDimensions = sizeOf(file.buffer);
@@ -100,8 +99,6 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                                             ";base64," +
                                             (Buffer.from(data.buffer).toString("base64")));
                                         await entry.save();
-                                        console.log("Resized image buffer info: ");
-                                        console.log(info);
                                         
                                     }
                                 });

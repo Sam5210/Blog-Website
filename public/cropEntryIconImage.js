@@ -1,8 +1,8 @@
 let entryIconImageFile = $("#entry-icon");
+let imageFile = $("#img");
 let entryIconImage = $("img.crop-preview");
 let saveButton = $("#save-entry-icon-button");
 let entryIconCroppedResult = $("img.crop-result");
-let entryResultMessage = $(".entry-result-message");
 let cropper = "";
 
 //Initialize cropper js
@@ -19,9 +19,6 @@ entryIconImageFile.on("change", function(event){
                 entryIconImage.attr("src", eventOnImageLoaded.target.result);
                 entryIconImage.removeClass("hide");
                 saveButton.removeClass("hide");
-                if(!(entryResultMessage.hasClass("hide"))){
-                    entryResultMessage.addClass("hide");
-                }
                 if(!(entryIconCroppedResult.hasClass("hide"))){
                     entryIconCroppedResult.addClass("hide");
                 }
@@ -39,6 +36,15 @@ entryIconImageFile.on("change", function(event){
         imageReader.readAsDataURL(event.target.files[0]);
     }
 });
+$("#img").on("change", function(event){
+    let reader = new FileReader();
+    reader.onload = function(event){
+        if(event.target.result){
+            $(".image-result").attr("src", event.target.result);
+        }
+    }
+    reader.readAsDataURL(event.target.files[0]);
+});
 
 saveButton.on("click", function(event){
     //Get the data for the cropped iage
@@ -51,6 +57,5 @@ saveButton.on("click", function(event){
 
     //Show the crop result, message and hide save button
     entryIconCroppedResult.removeClass("hide");
-    entryResultMessage.removeClass("hide");
     saveButton.addClass("hide");
 });
