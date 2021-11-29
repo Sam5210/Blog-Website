@@ -12,8 +12,8 @@ const storage = multer.memoryStorage();
 const upload = multer({storage: storage, limits: {fieldSize: 1.5 * 1024 * 1024}});
 
 //Connect Mongoose
-// mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true});
-mongoose.connect("mongodb://localhost:27017/Blog", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://JBHSS:Orient2020!@cluster0.zcndj.mongodb.net/Blog?retryWrites=true&w=majority", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/Blog", {useNewUrlParser: true});
 
 //Entry schema setup
 const entrySchema = new mongoose.Schema ({
