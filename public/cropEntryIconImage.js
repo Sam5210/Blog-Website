@@ -8,7 +8,6 @@ let cropper = "";
 //Initialize cropper js
 $.fn.cropper;
 entryIconImageFile.on("change", function(event){
-    console.log(typeof event.target.files[0]);
     if(event.target.files.length > 0){
         const imageReader = new FileReader();
         imageReader.onload = function(eventOnImageLoaded){

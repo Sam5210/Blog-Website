@@ -79,7 +79,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
         entryIcon: request.body.entryIconSrc
     });
     let save = async function(){
-        const maxImageWidth = 450;
+        const maxImageWidth = 600;
         if(request.files.img){
             await request.files.img.forEach(function(file){
                 let fileDimensions = sizeOf(file.buffer);
