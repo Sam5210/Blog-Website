@@ -172,7 +172,6 @@ $circle-width: 12px;
 .entry-icon{
   position: relative;
   width: 10vw;
-  opacity: 0;
 }
 .align-hor-right .entry-icon{
   margin-top: 2.5rem;
@@ -191,7 +190,6 @@ $circle-width: 12px;
 }
 .entry-text {
   display: inline-block;
-  opacity: 0;
   text-align: justify-all;
 }
 .align-hor-left .entry-text{
@@ -355,14 +353,7 @@ $fade-in-distance: 30vw;
   .align-hor-left .entry-icon{
     margin-top: 1.5rem;
   }
-  .align-hor-left .entry-text{
-    left: 25%;
-  }
-  .align-hor-right .entry-text{
-    right: 25%;
-  }
   .entry-text{
-    opacity: 0;
     background-color: black;
     padding: 5%;
     color: white;

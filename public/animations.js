@@ -1,7 +1,12 @@
 $(document).ready(function(){
     $(window).on("resize", function(event){
         setUpTimelineParameters();
-        // main();
+        if($(window).width() >= 992){
+            setRightEntryFormat("large");
+        }
+        else{
+            setRightEntryFormat("small");
+        }
     });
     setUpTimelineParameters();
     main();
@@ -56,12 +61,11 @@ let rightEntryIcon = $(".right-entry-icon").html();
 let rightEntryText = $(".right-entry-text").html();
 function setRightEntryFormat(windowSize){
     let rightEntry = $(".align-hor-right .row");
-    //console.log("Right entry inner html: " + rightEntry.html());
-    if(windowSize == "small"){
-        rightEntry.html(rightEntryText + rightEntryIcon);
+    if(windowSize == "large"){
+        rightEntry.html(rightEntryIcon + rightEntryText);
     }
     else{
-        rightEntry.html(rightEntryIcon + rightEntryText);
+        rightEntry.html(rightEntryText + rightEntryIcon);
     }
 
 }
@@ -290,7 +294,7 @@ function setUpTimelineParameters(){
 
     //reset timeline height
     $("#timeline").css("height", "0");
-    $("#timeline-slide").css("height", "0");
+    $("#timeline-slide").css("height", "100%");
     $(".circle-center.bottom").css('top', "0");
 
     let navbarHeight = convertFromPixels($(".navbar").css("height"));
