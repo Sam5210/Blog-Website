@@ -294,6 +294,7 @@ textarea{
   max-width: #{$content-trunc-width};
 }
 $timeline-width: 0.1rem;
+$timeline-min-height: 55vh;
 #timeline {
   display: inline-block;
   width: $timeline-width;
@@ -302,6 +303,7 @@ $timeline-width: 0.1rem;
   @extend %absolute-center;
   z-index: +1000;
   border-radius: 0.5%;
+  min-height: $timeline-min-height;
 }
 #timeline-slide {
   display: inline-block;
@@ -310,8 +312,10 @@ $timeline-width: 0.1rem;
   top: 0;
   left: 0;
   width: $timeline-width;
+  height: 100%;
   background: rgb(10, 10, 10);
   box-shadow: 0 0 0.2rem 0.35rem rgb(10, 10, 10);
+  min-height: $timeline-min-height;
 }
 @keyframes fade-in {
   0%{

@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    // $(window).on("resize", function(event){
-    //     setUpTimelineParameters();
-    //     main();
-    // });
+    $(window).on("resize", function(event){
+        setUpTimelineParameters();
+        // main();
+    });
     setUpTimelineParameters();
     main();
 });
@@ -91,9 +91,7 @@ function playEntryAnimations(initialAnimationDelay, textOffset){
     let leftText = $(".align-hor-left .entry-text");
     let rightText = $(".align-hor-right .entry-text");
     let leftTextWidth = leftText.css('width');
-    console.log("left text width: " + leftTextWidth);
     let rightTextWidth = rightText.css('width');
-    console.log("right text width = " + rightTextWidth);
     images.css('opacity', '0');
     leftText.css('opacity', '0');
     rightText.css('opacity', '0');
@@ -289,6 +287,12 @@ function setUpCirclesParameters(){
 }
 function setUpTimelineParameters(){
     //calculate timeline and the bottom circle's vertical position
+
+    //reset timeline height
+    $("#timeline").css("height", "0");
+    $("#timeline-slide").css("height", "0");
+    $(".circle-center.bottom").css('top', "0");
+
     let navbarHeight = convertFromPixels($(".navbar").css("height"));
     let navbarMarginBottom = convertFromPixels($(".navbar").css("margin-bottom"));
     let navbarPaddingTop = convertFromPixels($(".navbar").css("padding-top"));
@@ -296,26 +300,25 @@ function setUpTimelineParameters(){
     let footerHeight = convertFromPixels($("footer").css("height"));
     let footerMarginTop = convertFromPixels($("footer").css("margin-top"));
     let timelineHeightAddition = 35;
+    console.log(navbarHeight, navbarMarginBottom, navbarPaddingTop, navbarPaddingBottom, footerHeight, footerMarginTop);
 
     if($(window).width() < 992){
         timelineHeightAddition = 75;
     }
-    let timelineHeight = $(document).height() - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
-    let timelineHeightOffset = String((2 * Number(footerMarginTop)) - timelineHeightAddition);
-    let timelineMinHeight = "55vh";
+    let timelineHeight = Number($(document).height()) - navbarHeight - navbarMarginBottom - navbarPaddingTop - navbarPaddingBottom - footerHeight - footerMarginTop;
+    let timelineHeightOffset = String(footerMarginTop * 2);
     $("#timeline").css('top', `calc(${navbarPaddingTop}px + ${navbarPaddingBottom}px + ${navbarHeight}px + ${navbarMarginBottom}px + 7px)`);
     $("#timeline").css("height", `calc(${timelineHeight}px - ${timelineHeightOffset}px)`);
-    $("#timeline-slide").css("height", "100%");
-    $("#timeline").css("min-height", `${timelineMinHeight}px`);
     $("#timeline-slide").css("height", `calc(${timelineHeight})`);
-    $("#timeline-slide").css("min-height", `${timelineMinHeight}px`)
     $(".circle-center.bottom").css('top', `calc(${navbarHeight}px + ${timelineHeight}px + ${navbarMarginBottom}px + ${navbarPaddingTop}px + ${navbarPaddingBottom}px - ${timelineHeightOffset}px + 9px`);
+    console.log("timeline height: " + timelineHeight);
+    console.log("document height = " + $(document).height());
 }
 function convertFromPixels(string){
     if(string[string.length-1] == "x"){
-        return string.substring(0, string.length-2);
+        return Number(string.substring(0, string.length-2));
     }
-    return string;
+    return Number(string);
 }
 function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbranchSlide){
     var supportedFlag = $.keyframe.isSupported();
