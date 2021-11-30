@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    $(window).on("resize", function(event){
-        setUpTimelineParameters();
-        main();
-    });
+    // $(window).on("resize", function(event){
+    //     setUpTimelineParameters();
+    //     main();
+    // });
     setUpTimelineParameters();
     main();
 });
