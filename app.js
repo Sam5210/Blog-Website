@@ -55,7 +55,7 @@ app.post("/entry", function(request, response){
         }
         else{
             response.render("website", {
-                page: "entry", 
+                page: "entry",
                 journalEntries: [entry],
                 entry: entry
             });
@@ -74,7 +74,7 @@ app.post("/", upload.fields(uploadFields),function(request, response){
     // let content = request.body.content; content = content.replace(/\r\n|\r|\n/g,"<br/>");
 
     let entry = new Entry ({
-        title: request.body.title, 
+        title: request.body.title,
         content: request.body.content,
         entryIcon: request.body.entryIconSrc
     });
@@ -94,18 +94,18 @@ app.post("/", upload.fields(uploadFields),function(request, response){
                                     if(error){console.log(error);}
                                     else{
                                         entry.img.data.push(
-                                            "data:" + 
+                                            "data:" +
                                             file.mimetype +
                                             ";base64," +
                                             (Buffer.from(data.buffer).toString("base64")));
                                         entry.markModified("img");
-                                        
+
                                     }
                                 });
                     }
                     else{
                         entry.img.data.push(
-                            "data:" + 
+                            "data:" +
                             file.mimetype +
                             ";base64," +
                             (Buffer.from(file.buffer).toString("base64")));
