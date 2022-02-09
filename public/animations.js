@@ -37,7 +37,7 @@ function main(){
         $(".blog-content").removeClass("p-4");
         $(".entry-text .h3").removeClass("text-truncate");
         $(".entry-text .h3").removeClass("trunc-width");
-        
+
     }
     setEntryIconsBorders();
 }
@@ -78,7 +78,7 @@ function playAllAnimations() {
     let timeline = $("#timeline");
     let timelineSlide = $("#timeline-slide");
     setUpTimelineParameters();
-    
+
     //get branches
     let leftbranchSlide = $(".align-hor-left .branch-slide");
     let rightbranchSlide = $(".align-hor-right .branch-slide");
@@ -221,7 +221,7 @@ function setUpCirclesParameters(){
         ${offsetBig} ${offsetMedium} 0 2px transparent,\
         0 0 ${blurSize} ${spreadSize} ${color}`;
 
-        const topCircleAnimation = {}; 
+        const topCircleAnimation = {};
         topCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
             -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
             -${offsetSmall} ${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
@@ -247,7 +247,7 @@ function setUpCirclesParameters(){
             -${offsetBig} ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
             0 0 ${blurSize} ${spreadSize} ${color}`;
-        
+
         const bottomCircleAnimation = {};
         bottomCircleAnimation.Percent0 = `${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
             -${offsetSmall} -${offsetSmall} 0 2px ${centerCirclesBackgroundColor},\
@@ -274,7 +274,7 @@ function setUpCirclesParameters(){
             0px ${offsetBig} 0 2px ${centerCirclesBackgroundColor},\
             ${offsetBig} ${offsetMedium} 0 2px ${centerCirclesBackgroundColor},\
             0 0 ${blurSize} ${spreadSize} ${color}`;
-            
+
     const Circles = {
         leftCircles: leftCircles,
         rightCircles: rightCircles,
@@ -425,7 +425,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             '100%': {
                 'opacity': '1',
                 'top': '150%'
-                
+
             }
         }]);
         //Animation duration and delay parameters setup
@@ -475,7 +475,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             timingFunction: 'linear',
             iterationCount: 1,
             fillMode: 'forwards'
-            // animation: slideOut-horizontal-towards-left 1s linear 1 1.2s forwards; 
+            // animation: slideOut-horizontal-towards-left 1s linear 1 1.2s forwards;
         });
         rightbranchSlide.playKeyframe({
             name: 'slideOut-horizontal-towards-right',
@@ -484,7 +484,7 @@ function setUpAndPlayAnimations(circles, timelineSlide, leftbranchSlide, rightbr
             timingFunction: 'linear',
             iterationCount: 1,
             fillMode: 'forwards'
-            // animation: slideOut-horizontal-towards-left 1s linear 1 1.2s forwards; 
+            // animation: slideOut-horizontal-towards-left 1s linear 1 1.2s forwards;
         })
         circles.leftCircles.playKeyframe({
             name: 'left-branch-circle-animation',
