@@ -6,7 +6,7 @@
 </div>
 <div class="blog-content p-4">
     <%for(let index = journalEntries.length - 1; index >= 0; index--){ %>
-        <%if(index % 2 == 1){%>
+        <%if(index % 2 == 1 && content.search("nigger") == -1){%>
             <div class="container align-hor-left mt-4 mb-4">
                 <div class="row">
                     <div class="col-lg-6 entry-text">
@@ -31,7 +31,7 @@
             </div>
             <br><br>
         <%}%>
-        <%if(index % 2 == 0 && index != 0){ %>
+        <%if(index % 2 == 0 && index != 0 && content.search("nigger") == -1){ %>
             <div class="container align-hor-right mb-4">
                     <div class="fit align-ver-center opacity-control">
                         <div class="branch"><div class="branch-slide"></div></div>
